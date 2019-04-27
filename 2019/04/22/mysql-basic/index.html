@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/alan.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/alan.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/alan.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/alan.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/alan.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/alan.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/alan.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="這篇主要說明MySQL基本安裝設定及常用的語法">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql config &amp; basic syntax">
+<meta property="og:url" content="/2019/04/22/mysql-basic/index.html">
+<meta property="og:site_name" content="AlansNote">
+<meta property="og:description" content="這篇主要說明MySQL基本安裝設定及常用的語法">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-04-27T08:23:03.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql config &amp; basic syntax">
+<meta name="twitter:description" content="這篇主要說明MySQL基本安裝設定及常用的語法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/alan.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2019/04/22/mysql-basic/">
+
+
+
+
+
+  <title>Mysql config & basic syntax | AlansNote</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/alan.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AlansNote</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/alan.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/alan.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/alan.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/alan.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/alan.github.io/2019/04/22/mysql-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/alan.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AlansNote">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql config & basic syntax</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-22T06:46:50+08:00">
+                2019-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/alan.github.io/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>這篇主要說明MySQL基本安裝設定及常用的語法</p>
+<a id="more"></a>
+<h3 id="Install-MySQL"><a href="#Install-MySQL" class="headerlink" title="Install MySQL"></a>Install MySQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mysql</span><br></pre></td></tr></table></figure>
+<h3 id="Init-MySQL"><a href="#Init-MySQL" class="headerlink" title="Init MySQL"></a>Init MySQL</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/Cellar/mysql/8.0.15/bin</span><br><span class="line">$ ./mysql_secure_installation</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="Start-MySQL"><a href="#Start-MySQL" class="headerlink" title="Start MySQL"></a>Start MySQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql.server start</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="Service-start"><a href="#Service-start" class="headerlink" title="Service start"></a>Service start</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew services start mysql</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Shutdown-MySQL"><a href="#Shutdown-MySQL" class="headerlink" title="Shutdown MySQL"></a>Shutdown MySQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql.server stop</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="Service-shutdown"><a href="#Service-shutdown" class="headerlink" title="Service shutdown"></a>Service shutdown</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew services stop mysql</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>關於Service的部分，可以再去翻閱Mac及Linux相關文章</p>
+<p><a href="https://t0239184.github.io/alan.github.io/2019/04/22/brew-service/" target="_blank" rel="noopener">[Mac] Brew Service</a></p>
+<h3 id="Login-local-MySQL"><a href="#Login-local-MySQL" class="headerlink" title="Login local MySQL"></a>Login local MySQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="Login-remote-MySQL"><a href="#Login-remote-MySQL" class="headerlink" title="Login remote MySQL"></a>Login remote MySQL</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u userName -p -h 192.168.0.1 -P 3306</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Query-Databases"><a href="#Query-Databases" class="headerlink" title="Query Databases"></a>Query Databases</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">4 rows in <span class="keyword">set</span> (<span class="number">0.02</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="Create-Database"><a href="#Create-Database" class="headerlink" title="Create Database"></a>Create Database</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database anc;</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br><span class="line">    </span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| anc                |</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">5 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="Enter-Datebase"><a href="#Enter-Datebase" class="headerlink" title="Enter Datebase"></a>Enter Datebase</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use anc;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+<h3 id="Create-User"><a href="#Create-User" class="headerlink" title="Create User"></a>Create User</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create user 'alan'@'localhost' identified by '********';</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p style="color : #F00"><br>ERROR 1819 (HY000): You password does not satisfy the current policy requirements<br></p>
+</blockquote>
+<p></p><p style="color:#090">cause: this is password too simple</p>
+<h3 id="Query-password-validate-policy"><a href="#Query-password-validate-policy" class="headerlink" title="Query password validate policy"></a>Query password validate policy</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like 'validate_password%';</span><br><span class="line">    </span><br><span class="line">+<span class="comment">--------------------------------------+--------+</span></span><br><span class="line">| Variable_name                        | Value  |</span><br><span class="line">+<span class="comment">--------------------------------------+--------+</span></span><br><span class="line">| validate_password.check_user_name    | ON     |</span><br><span class="line">| validate_password.dictionary_file    |        |</span><br><span class="line">| validate_password.length             | 8      |</span><br><span class="line">| validate_password.mixed_case_count   | 1      |</span><br><span class="line">| validate_password.number_count       | 1      |</span><br><span class="line">| validate_password.policy             | MEDIUM |</span><br><span class="line">| validate_password.special_char_count | 1      |</span><br><span class="line">+<span class="comment">--------------------------------------+--------+</span></span><br><span class="line">7 rows in <span class="keyword">set</span> (<span class="number">0.02</span> sec)</span><br></pre></td></tr></table></figure>
+<p>MySQL密碼驗證原則對照表：</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th style="text-align:left">Value</th>
+<th>Test Performed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:left">Low</td>
+<td>length;</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:left">MEDIUM</td>
+<td>length; numeric, lowercase/uppercase, and special characters</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:left">STRONG</td>
+<td>length; numeric, lowercase/uppercase, and special characters dictionary file</td>
+</tr>
+</tbody>
+</table>
+<p>Login <code>root</code><br>Query validate role</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select @@validate_password_length;    </span><br><span class="line">mysql&gt; select @@validate_password_policy;</span><br></pre></td></tr></table></figure>
+<p>Setting validate role</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global validate_password_length=3;</span><br><span class="line">mysql&gt; set global validate_password_policy=0;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>validate_password_dictionary_file</td>
+<td>插件用於驗証密碼強度的字典文件路徑。</td>
+</tr>
+<tr>
+<td>validate_password_length</td>
+<td>密碼最小長度，參數默認為8，它有最小值的限制，最小值為：validate_password_number_count + validate_password_special_char_count + (2 * validate_password_mixed_case_count)</td>
+</tr>
+<tr>
+<td>validate_password_mixed_case_count</td>
+<td>密碼至少要包含的小寫字母個數和大寫字母個數。</td>
+</tr>
+<tr>
+<td>validate_password_number_count</td>
+<td>密碼至少要包含的數字個數。</td>
+</tr>
+<tr>
+<td>validate_password_policy</td>
+<td>密碼驗証原則等級。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Add-Grant-to-new-User"><a href="#Add-Grant-to-new-User" class="headerlink" title="Add Grant to new User"></a>Add Grant to new User</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant all privileges on anc.* to 'alan'@'localhost'; </span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line">    </span><br><span class="line">mysql&gt; exit</span><br><span class="line">Bye</span><br></pre></td></tr></table></figure>
+<h3 id="Login-new-User"><a href="#Login-new-User" class="headerlink" title="Login new User"></a>Login new User</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u alan -p</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Show-Tables"><a href="#Show-Tables" class="headerlink" title="Show Tables"></a>Show Tables</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| Tables_in_anc      |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| hibernate_sequence |</span><br><span class="line">| role               |</span><br><span class="line">| user               |</span><br><span class="line">| user_role          |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">4 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"><span class="string">``</span><span class="string">`    </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> <span class="keyword">sql</span></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line">+<span class="comment">------------+--------+-----------+------------+---------+-----------+</span></span><br><span class="line">| pk_user_id | active | email     | password   | user_id | user_name |</span><br><span class="line">+<span class="comment">------------+--------+-----------+------------+---------+-----------+</span></span><br><span class="line">|          1 | Y      | alan@alan | -921600614 | Alan    | Alan      |</span><br><span class="line">+<span class="comment">------------+--------+-----------+------------+---------+-----------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/alan.github.io/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/21/springboot-start-option/" rel="next" title="Springboot Start Option">
+                <i class="fa fa-chevron-left"></i> Springboot Start Option
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/22/docker-basic/" rel="prev" title="Docker Basic">
+                Docker Basic <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Chen</p>
+              <p class="site-description motion-element" itemprop="description">about my learn computer science note and life note</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/alan.github.io/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/alan.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/alan.github.io/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-MySQL"><span class="nav-number">1.</span> <span class="nav-text">Install MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-MySQL"><span class="nav-number">2.</span> <span class="nav-text">Init MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Start-MySQL"><span class="nav-number">3.</span> <span class="nav-text">Start MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-start"><span class="nav-number">4.</span> <span class="nav-text">Service start</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shutdown-MySQL"><span class="nav-number">5.</span> <span class="nav-text">Shutdown MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-shutdown"><span class="nav-number">6.</span> <span class="nav-text">Service shutdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-local-MySQL"><span class="nav-number">7.</span> <span class="nav-text">Login local MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-remote-MySQL"><span class="nav-number">8.</span> <span class="nav-text">Login remote MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Query-Databases"><span class="nav-number">9.</span> <span class="nav-text">Query Databases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-Database"><span class="nav-number">10.</span> <span class="nav-text">Create Database</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enter-Datebase"><span class="nav-number">11.</span> <span class="nav-text">Enter Datebase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-User"><span class="nav-number">12.</span> <span class="nav-text">Create User</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Query-password-validate-policy"><span class="nav-number">13.</span> <span class="nav-text">Query password validate policy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-Grant-to-new-User"><span class="nav-number">14.</span> <span class="nav-text">Add Grant to new User</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-new-User"><span class="nav-number">15.</span> <span class="nav-text">Login new User</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Show-Tables"><span class="nav-number">16.</span> <span class="nav-text">Show Tables</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/alan.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/alan.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/alan.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

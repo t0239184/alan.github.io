@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/alan.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/alan.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/alan.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/alan.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/alan.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/alan.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/alan.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,Git,Github,GitPage,NPM,Hexo,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="之前就有使用Git的習慣，所以知道Github可以存放靜態網頁，但到今天才真正的去了解，除了伺服器端的東西無法以外，剩下的例如 HTML JS CSS 等等的都可以在上面執行，那這樣就非常方便了，接著又找到有許多的工具可以幫助你更快的建立相關的版面，於是今天就使用了Hexo建立了現在這個Blog，那麼下面就簡單的紀錄怎麼建立一個GitPage的blog。">
+<meta name="keywords" content="Linux,Git,Github,GitPage,NPM,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github &amp; Hexo">
+<meta property="og:url" content="/2019/04/19/github-and-hexo/index.html">
+<meta property="og:site_name" content="AlansNote">
+<meta property="og:description" content="之前就有使用Git的習慣，所以知道Github可以存放靜態網頁，但到今天才真正的去了解，除了伺服器端的東西無法以外，剩下的例如 HTML JS CSS 等等的都可以在上面執行，那這樣就非常方便了，接著又找到有許多的工具可以幫助你更快的建立相關的版面，於是今天就使用了Hexo建立了現在這個Blog，那麼下面就簡單的紀錄怎麼建立一個GitPage的blog。">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-04-27T08:23:03.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github &amp; Hexo">
+<meta name="twitter:description" content="之前就有使用Git的習慣，所以知道Github可以存放靜態網頁，但到今天才真正的去了解，除了伺服器端的東西無法以外，剩下的例如 HTML JS CSS 等等的都可以在上面執行，那這樣就非常方便了，接著又找到有許多的工具可以幫助你更快的建立相關的版面，於是今天就使用了Hexo建立了現在這個Blog，那麼下面就簡單的紀錄怎麼建立一個GitPage的blog。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/alan.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2019/04/19/github-and-hexo/">
+
+
+
+
+
+  <title>Github & Hexo | AlansNote</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/alan.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AlansNote</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/alan.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/alan.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/alan.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/alan.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/alan.github.io/2019/04/19/github-and-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/alan.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AlansNote">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Github & Hexo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-19T14:47:41+08:00">
+                2019-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/alan.github.io/categories/FrontEnd/" itemprop="url" rel="index">
+                    <span itemprop="name">FrontEnd</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前就有使用Git的習慣，所以知道Github可以存放靜態網頁，但到今天才真正的去了解，除了伺服器端的東西無法以外，剩下的例如 <code>HTML</code> <code>JS</code> <code>CSS</code> 等等的都可以在上面執行，那這樣就非常方便了，接著又找到有許多的工具可以幫助你更快的建立相關的版面，於是今天就使用了Hexo建立了現在這個Blog，那麼下面就簡單的紀錄怎麼建立一個GitPage的blog。</p>
+<a id="more"></a>
+<h2 id="Required-Package"><a href="#Required-Package" class="headerlink" title="Required Package"></a>Required Package</h2><ul>
+<li><code>git</code></li>
+<li><code>nodejs</code></li>
+<li><code>npm</code></li>
+</ul>
+<h2 id="Install-Hexo-amp-Hexo-Git"><a href="#Install-Hexo-amp-Hexo-Git" class="headerlink" title="Install Hexo &amp; Hexo Git"></a>Install Hexo &amp; Hexo Git</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h2 id="Create-Blog-by-Hexo"><a href="#Create-Blog-by-Hexo" class="headerlink" title="Create Blog by Hexo"></a>Create Blog by Hexo</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ Documents hexo init blog</span><br><span class="line">INFO  Cloning hexo-starter to ~/Documents/blog</span><br><span class="line">Cloning into <span class="string">'/Users/alan/Documents/blog'</span>...</span><br><span class="line">remote: Enumerating objects: 3, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">Unpacking objects: 100% (71/71), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 71 (delta 0), reused 0 (delta 0), pack-reused 68</span><br><span class="line">Submodule <span class="string">'themes/landscape'</span> (https://github.com/hexojs/hexo-theme-landscape.git) registered <span class="keyword">for</span> path <span class="string">'themes/landscape'</span></span><br><span class="line">Cloning into <span class="string">'/Users/alan/Documents/blog/themes/landscape'</span>...</span><br><span class="line">remote: Enumerating objects: 16, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (16/16), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (13/13), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 893 (delta 3), reused 12 (delta 2), pack-reused 877</span><br><span class="line">Receiving objects: 100% (893/893), 2.56 MiB | 115.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (466/466), <span class="keyword">done</span>.</span><br><span class="line">Submodule path <span class="string">'themes/landscape'</span>: checked out <span class="string">'73a23c51f8487cfcd7c6deec96ccc7543960d350'</span></span><br><span class="line">INFO  Install dependencies</span><br><span class="line">yarn install v1.15.2</span><br><span class="line">info No lockfile found.</span><br><span class="line">[1/4] 🔍  Resolving packages...</span><br><span class="line">warning hexo &gt; warehouse &gt; cuid &gt; core-js@1.2.7: core-js@&lt;2.6.5 is no longer maintained. Please, upgrade to core-js@3 or at least to actual version of core-js@2.</span><br><span class="line">[2/4] 🚚  Fetching packages...</span><br><span class="line">[3/4] 🔗  Linking dependencies...</span><br><span class="line">[4/4] 🔨  Building fresh packages...</span><br><span class="line">success Saved lockfile.</span><br><span class="line">✨  Done <span class="keyword">in</span> 15.31s.</span><br><span class="line">INFO  Start blogging with Hexo!</span><br></pre></td></tr></table></figure>
+<h2 id="Install-npm-dependency-package"><a href="#Install-npm-dependency-package" class="headerlink" title="Install npm dependency package"></a>Install npm dependency package</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ Documents <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install</span><br><span class="line">npm WARN deprecated core-js@1.2.7: core-js@&lt;2.6.5 is no longer maintained. Please, upgrade to core-js@3 or at least to actual version of core-js@2.</span><br><span class="line">npm WARN rm not removing /Users/alan/Documents/blog/node_modules/.bin/rimraf as it wasn<span class="string">'t installed by /Users/alan/Documents/blog/node_modules/rimraf</span></span><br><span class="line"><span class="string">npm WARN rm not removing /Users/alan/Documents/blog/node_modules/.bin/nopt as it wasn'</span>t installed by /Users/alan/Documents/blog/node_modules/nopt</span><br><span class="line"></span><br><span class="line">&gt; fsevents@1.2.8 install /Users/alan/Documents/blog/node_modules/fsevents</span><br><span class="line">&gt; node install</span><br><span class="line"></span><br><span class="line">node-pre-gyp WARN Using needle <span class="keyword">for</span> node-pre-gyp https download</span><br><span class="line">[fsevents] Success: <span class="string">"/Users/alan/Documents/blog/node_modules/fsevents/lib/binding/Release/node-v67-darwin-x64/fse.node"</span> is installed via remote</span><br><span class="line">npm notice created a lockfile as package-lock.json. You should commit this file.</span><br><span class="line">added 101 packages from 37 contributors, removed 80 packages, updated 322 packages and audited 4697 packages <span class="keyword">in</span> 33.397s</span><br><span class="line">found 3 vulnerabilities (2 low, 1 moderate)</span><br><span class="line">  run `npm audit fix` to fix them, or `npm audit` <span class="keyword">for</span> details</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">./                 .gitignore         node_modules/      package.json       <span class="built_in">source</span>/            yarn.lock</span><br><span class="line">../                _config.yml        package-lock.json  scaffolds/         themes/</span><br></pre></td></tr></table></figure>
+<h2 id="Create-new-Github-repository"><a href="#Create-new-Github-repository" class="headerlink" title="Create new Github repository"></a>Create new Github repository</h2><p>首先我們必須去Github建立一個新的repository，但這個名稱就有限定，必須以<code>yourName.github.io</code>這樣的規則命名，這樣才可以使用gitPage。</p>
+<h2 id="Remote-repository-setting"><a href="#Remote-repository-setting" class="headerlink" title="Remote repository setting"></a>Remote repository setting</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="attr">http://github.com/t0239184/alan.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<h2 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">or</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<h2 id="Run-Local-Server"><a href="#Run-Local-Server" class="headerlink" title="Run Local Server"></a>Run Local Server</h2><p>可以啟動本機端的Server來查看目前畫面會是什麼樣子</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">INFO  Start processing</span><br><span class="line">WARN  ===============================================================</span><br><span class="line">WARN  ========================= ATTENTION! ==========================</span><br><span class="line">WARN  ===============================================================</span><br><span class="line">WARN   NexT repository is moving here: https://github.com/theme-next</span><br><span class="line">WARN  ===============================================================</span><br><span class="line">WARN   It<span class="string">'s rebase to v6.0.0 and future maintenance will resume there</span></span><br><span class="line"><span class="string">WARN  ===============================================================</span></span><br><span class="line"><span class="string">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
+<h2 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">or</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong><em>錯誤處理 : ERROR Deployer not found: git</em></strong></p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line">npm WARN babel-eslint@10.0.1 requires a peer of eslint@&gt;= 4.12.1 but none is installed. You must install peer dependencies yourself.</span><br><span class="line">&gt;</span><br><span class="line">+ hexo-deployer-git@1.0.0</span><br><span class="line">added 59 packages from 48 contributors and audited 6951 packages <span class="keyword">in</span> 9.134s</span><br><span class="line">found 3 vulnerabilities (2 low, 1 moderate)</span><br><span class="line">  run `npm audit fix` to fix them, or `npm audit` <span class="keyword">for</span> details</span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded <span class="keyword">in</span> 167 ms</span><br><span class="line">INFO  0 files generated <span class="keyword">in</span> 197 ms</span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Setting up Git deployment...</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/alan/Documents/blog/.deploy_git/.git/</span><br><span class="line">[master (root-commit) b2fe8d4] First commit</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 placeholder</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">INFO  Copying files from extend <span class="built_in">dirs</span>...</span><br><span class="line">[master 440b5de] Site updated: 2019-04-19 12:24:02</span><br><span class="line"> 29 files changed, 5777 insertions(+)</span><br><span class="line"> create mode 100644 2019/04/19/hello-world/index.html</span><br><span class="line"> create mode 100644 archives/2019/04/index.html</span><br><span class="line"> create mode 100644 archives/2019/index.html</span><br><span class="line"> create mode 100644 archives/index.html</span><br><span class="line"> create mode 100644 css/fonts/FontAwesome.otf</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.eot</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.svg</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.ttf</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.woff</span><br><span class="line"> create mode 100644 css/images/banner.jpg</span><br><span class="line"> create mode 100644 css/style.css</span><br><span class="line"> create mode 100644 fancybox/blank.gif</span><br><span class="line"> create mode 100644 fancybox/fancybox_loading.gif</span><br><span class="line"> create mode 100644 fancybox/fancybox_loading@2x.gif</span><br><span class="line"> create mode 100644 fancybox/fancybox_overlay.png</span><br><span class="line"> create mode 100644 fancybox/fancybox_sprite.png</span><br><span class="line"> create mode 100644 fancybox/fancybox_sprite@2x.png</span><br><span class="line"> create mode 100644 fancybox/helpers/fancybox_buttons.png</span><br><span class="line"> create mode 100644 fancybox/helpers/jquery.fancybox-buttons.css</span><br><span class="line"> create mode 100644 fancybox/helpers/jquery.fancybox-buttons.js</span><br><span class="line"> create mode 100644 fancybox/helpers/jquery.fancybox-media.js</span><br><span class="line"> create mode 100644 fancybox/helpers/jquery.fancybox-thumbs.css</span><br><span class="line"> create mode 100644 fancybox/helpers/jquery.fancybox-thumbs.js</span><br><span class="line"> create mode 100644 fancybox/jquery.fancybox.css</span><br><span class="line"> create mode 100644 fancybox/jquery.fancybox.js</span><br><span class="line"> create mode 100644 fancybox/jquery.fancybox.pack.js</span><br><span class="line"> create mode 100644 index.html</span><br><span class="line"> create mode 100644 js/script.js</span><br><span class="line"> delete mode 100644 placeholder</span><br><span class="line">warning: redirecting to https://github.com/t0239184/alan.github.io.git/</span><br><span class="line">Enumerating objects: 46, <span class="keyword">done</span>.</span><br><span class="line">Counting objects: 100% (46/46), <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 4 threads</span><br><span class="line">Compressing objects: 100% (36/36), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (46/46), 507.66 KiB | 8.60 MiB/s, <span class="keyword">done</span>.</span><br><span class="line">Total 46 (delta 3), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">To http://github.com/t0239184/alan.github.io.git</span><br><span class="line"> * [new branch]      HEAD -&gt; master</span><br><span class="line">Branch <span class="string">'master'</span> <span class="built_in">set</span> up to track remote branch <span class="string">'master'</span> from <span class="string">'http://github.com/t0239184/alan.github.io.git'</span>.</span><br><span class="line">INFO  Deploy <span class="keyword">done</span>: git</span><br></pre></td></tr></table></figure>
+<h2 id="Theme-Setting"><a href="#Theme-Setting" class="headerlink" title="Theme Setting"></a>Theme Setting</h2><p>Hexo已經有集合了很多人建立好的Theme，可以去他們的網站裡面挑選一個自己喜歡的版型。</p>
+<blockquote>
+<p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo主題 - https://hexo.io/themes/</a></p>
+</blockquote>
+<p>我們這次使用 NexT 這個主題，所以我們先從 Github 下載主題到 themes 資料夾中，然後之後再稍作修改成自己想要的樣式。</p>
+<blockquote>
+<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">NexT使用文件 - http://theme-next.iissnan.com/</a></p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+<p>然後更多的設定就需要到 /blog/themes/next/_config.yml下面去設定了，<br>那麼接下來就要進去將一些頁面顯示的東西打開，例如分類、標籤、關於我、所有文章等等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim themes/next/_config.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># themes/next/_config.yml</span></span><br><span class="line"><span class="comment"># 關於Menu Mapping設定</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">  home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line"><span class="attr">  about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">user</span></span><br><span class="line"><span class="attr">  tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">  categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">th</span></span><br><span class="line"><span class="attr">  archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br><span class="line"></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 關於側邊欄的位置設定以及顯示方式</span></span><br><span class="line"><span class="attr">sidebar:</span></span><br><span class="line">  <span class="comment"># Sidebar Position, available value: left | right (only for Pisces | Gemini).</span></span><br><span class="line"><span class="attr">  position:</span> <span class="string">left</span></span><br><span class="line">  <span class="comment">#position: right</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Sidebar Display, available value (only for Muse | Mist):</span></span><br><span class="line">  <span class="comment">#  - post    expand on posts automatically. Default.</span></span><br><span class="line">  <span class="comment">#  - always  expand for all pages automatically</span></span><br><span class="line">  <span class="comment">#  - hide    expand only when click on the sidebar toggle icon.</span></span><br><span class="line">  <span class="comment">#  - remove  Totally remove sidebar including sidebar toggle.</span></span><br><span class="line">  <span class="comment">#display: post</span></span><br><span class="line"><span class="attr">  display:</span> <span class="string">always</span></span><br><span class="line">  <span class="comment">#display: hide</span></span><br><span class="line">  <span class="comment">#display: remove</span></span><br></pre></td></tr></table></figure>
+<h2 id="Init-Categories"><a href="#Init-Categories" class="headerlink" title="Init Categories"></a>Init Categories</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br><span class="line">INFO  Created: ~/Documents/blog/<span class="built_in">source</span>/categories/index.md</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2019-04-19 14:40:37</span><br><span class="line">type: "categories"</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h2 id="Init-Tag"><a href="#Init-Tag" class="headerlink" title="Init Tag"></a>Init Tag</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page tags</span><br><span class="line">INFO  Created: ~/Documents/blog/<span class="built_in">source</span>/tags/index.md</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2019-04-19 15:00:41</span><br><span class="line">type: "tags"</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h2 id="Init-About"><a href="#Init-About" class="headerlink" title="Init About"></a>Init About</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page about</span><br><span class="line">INFO  Created: ~/Documents/blog/<span class="built_in">source</span>/about/index.md</span><br></pre></td></tr></table></figure>
+<h2 id="New-article"><a href="#New-article" class="headerlink" title="New article"></a>New article</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new githib_and_hexo</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim sources/_post/github_and_hexo.md</span><br></pre></td></tr></table></figure>
+<h2 id="Add-Categories-and-Tags"><a href="#Add-Categories-and-Tags" class="headerlink" title="Add Categories and Tags"></a>Add Categories and Tags</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Github &amp; Hexo</span><br><span class="line">date: 2019-04-19 14:47:41</span><br><span class="line">categories:</span><br><span class="line"><span class="bullet">- </span>FrontEnd</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">- </span>Git</span><br><span class="line"><span class="bullet">- </span>Github</span><br><span class="line"><span class="bullet">- </span>GitPage</span><br><span class="line"><span class="bullet">- </span>Linux</span><br><span class="line"><span class="bullet">- </span>NPM</span><br><span class="line"><span class="bullet">- </span>Hexo</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--post context--&gt;</span></span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="Remove-article"><a href="#Remove-article" class="headerlink" title="Remove article"></a>Remove article</h2><p>只要從本機移除.md檔就可以了</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf blog/sources/_post/xxxxx.md</span><br><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
+<h2 id="顯示摘要，隱藏本文"><a href="#顯示摘要，隱藏本文" class="headerlink" title="顯示摘要，隱藏本文"></a>顯示摘要，隱藏本文</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- more --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這個之下的文章就會被折疊起來，這樣主頁面上就會更整潔一些。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/alan.github.io/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/alan.github.io/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/alan.github.io/tags/Github/" rel="tag"># Github</a>
+          
+            <a href="/alan.github.io/tags/GitPage/" rel="tag"># GitPage</a>
+          
+            <a href="/alan.github.io/tags/NPM/" rel="tag"># NPM</a>
+          
+            <a href="/alan.github.io/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/20/mac-enviroment/" rel="prev" title="Mac Enviroment">
+                Mac Enviroment <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Chen</p>
+              <p class="site-description motion-element" itemprop="description">about my learn computer science note and life note</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/alan.github.io/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/alan.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/alan.github.io/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Required-Package"><span class="nav-number">1.</span> <span class="nav-text">Required Package</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Hexo-amp-Hexo-Git"><span class="nav-number">2.</span> <span class="nav-text">Install Hexo &amp; Hexo Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-Blog-by-Hexo"><span class="nav-number">3.</span> <span class="nav-text">Create Blog by Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-npm-dependency-package"><span class="nav-number">4.</span> <span class="nav-text">Install npm dependency package</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-new-Github-repository"><span class="nav-number">5.</span> <span class="nav-text">Create new Github repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remote-repository-setting"><span class="nav-number">6.</span> <span class="nav-text">Remote repository setting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">7.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-Local-Server"><span class="nav-number">8.</span> <span class="nav-text">Run Local Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">9.</span> <span class="nav-text">Deploy to remote sites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theme-Setting"><span class="nav-number">10.</span> <span class="nav-text">Theme Setting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Init-Categories"><span class="nav-number">11.</span> <span class="nav-text">Init Categories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Init-Tag"><span class="nav-number">12.</span> <span class="nav-text">Init Tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Init-About"><span class="nav-number">13.</span> <span class="nav-text">Init About</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New-article"><span class="nav-number">14.</span> <span class="nav-text">New article</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-Categories-and-Tags"><span class="nav-number">15.</span> <span class="nav-text">Add Categories and Tags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remove-article"><span class="nav-number">16.</span> <span class="nav-text">Remove article</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顯示摘要，隱藏本文"><span class="nav-number">17.</span> <span class="nav-text">顯示摘要，隱藏本文</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/alan.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/alan.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/alan.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

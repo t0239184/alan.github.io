@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/alan.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/alan.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/alan.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/alan.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/alan.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/alan.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/alan.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Docker有分三個部分  docker dockerfile docker-compose  這邊主要講關於Docker的基本指令，而後面還有Volume，Host與Container的資料互動">
+<meta name="keywords" content="Docker,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker Basic">
+<meta property="og:url" content="/2019/04/22/docker-basic/index.html">
+<meta property="og:site_name" content="AlansNote">
+<meta property="og:description" content="Docker有分三個部分  docker dockerfile docker-compose  這邊主要講關於Docker的基本指令，而後面還有Volume，Host與Container的資料互動">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-04-27T08:23:03.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker Basic">
+<meta name="twitter:description" content="Docker有分三個部分  docker dockerfile docker-compose  這邊主要講關於Docker的基本指令，而後面還有Volume，Host與Container的資料互動">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/alan.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2019/04/22/docker-basic/">
+
+
+
+
+
+  <title>Docker Basic | AlansNote</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/alan.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AlansNote</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/alan.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/alan.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/alan.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/alan.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/alan.github.io/2019/04/22/docker-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/alan.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AlansNote">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker Basic</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-22T09:53:27+08:00">
+                2019-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/alan.github.io/categories/Unix-like/" itemprop="url" rel="index">
+                    <span itemprop="name">Unix-like</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Docker有分三個部分</p>
+<ul>
+<li>docker</li>
+<li>dockerfile</li>
+<li>docker-compose</li>
+</ul>
+<p>這邊主要講關於Docker的基本指令，而後面還有Volume，Host與Container的資料互動</p>
+<a id="more"></a>
+<h2 id="Install-Docker"><a href="#Install-Docker" class="headerlink" title="Install Docker"></a>Install Docker</h2><p>Mac</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install docker</span><br><span class="line">$ open /Application/docker.app</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker --version</span><br><span class="line">Docker version 18.09.2, build 6247962</span><br></pre></td></tr></table></figure>
+<h2 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h2><h3 id="login"><a href="#login" class="headerlink" title="login"></a>login</h3><p>登入參數如下，發現有三種參數，可以通通不輸入，他會問你帳號密碼，也可以只輸入<code>-u</code>帶入帳號，它就會問你密碼剩餘的兩個<code>--password string</code>是明碼輸入，<code>--password-stdin</code>是讀取文件中的字串，所以建議不加入參數，或者只使用<code>-u</code>會相對安全些。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Usage:	docker login [OPTIONS] [SERVER]</span><br><span class="line"></span><br><span class="line">Log <span class="keyword">in</span> to a Docker registry (如果未輸入 Server 則預設登入 Docker Hub)</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -p, --password string   Password</span><br><span class="line">      --password-stdin    Take the password from stdin</span><br><span class="line">  -u, --username string   Username</span><br><span class="line">  </span><br><span class="line">$ docker login -u t0239184 -p *********</span><br><span class="line">WARNING! Using --password via the CLI is insecure. Use --password-stdin.</span><br><span class="line">Login Succeeded</span><br></pre></td></tr></table></figure>
+<h3 id="logout"><a href="#logout" class="headerlink" title="logout"></a>logout</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
+<h3 id="search-Search-Image"><a href="#search-Search-Image" class="headerlink" title="search : Search Image"></a>search : Search Image</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker search ubuntu</span><br><span class="line">NAME                                                   DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                 Ubuntu is a Debian-based Linux operating sys…   9332                [OK]</span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                         Docker image to provide HTML5 VNC interface …   282                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>下載 Docker image 時，盡量使用 official image，而不要使用別人包過的 image，因為可能會有後門或木馬</p>
+</blockquote>
+<h3 id="pull-Download-Image"><a href="#pull-Download-Image" class="headerlink" title="pull : Download Image"></a>pull : Download Image</h3><p>下載的時候需要指名ImageName，<code>:</code>後為版本號，非必填，預設為<code>latest</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull ubuntu:latest</span><br></pre></td></tr></table></figure>
+<h3 id="image"><a href="#image" class="headerlink" title="image"></a>image</h3><h4 id="list-Images"><a href="#list-Images" class="headerlink" title="list Images"></a>list Images</h4><p>Image清單</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br><span class="line">or </span><br><span class="line">$ docker images</span><br></pre></td></tr></table></figure>
+<h4 id="remove-image"><a href="#remove-image" class="headerlink" title="remove image"></a>remove image</h4><p>移除Image</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm &lt;ImageID&gt;</span><br><span class="line">or</span><br><span class="line">$ docker rmi &lt;ImageId&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="ps-Exist-Container"><a href="#ps-Exist-Container" class="headerlink" title="ps : Exist Container"></a>ps : Exist Container</h3><p>顯示已建立的Container</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 預設只顯示正在執行的Job -a：顯示全部Container</span></span><br><span class="line">$ docker ps -a</span><br></pre></td></tr></table></figure>
+<h3 id="rm-Remove-Container"><a href="#rm-Remove-Container" class="headerlink" title="rm : Remove Container"></a>rm : Remove Container</h3><p>移除Container</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rm &lt;containerId or Name&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="run-create-container-and-run-container"><a href="#run-create-container-and-run-container" class="headerlink" title="run : create container and run container"></a>run : create container and run container</h3><p>建立Container &amp; 執行Container</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    -d 於Docker背景執行</span><br><span class="line">    -p 指定Port號</span><br><span class="line">  --rm Container執行結束，刪除Container</span><br><span class="line">--name 指定Container名稱    </span><br><span class="line"></span><br><span class="line">$ docker run -d -p 8080:8080 --rm --name=ubuntu-1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Ctrl+p+q 可以由正在執行中的Container中跳出，讓Container繼續在Docker背景執行，我們可以繼續做其他的事情</p>
+</blockquote>
+<h3 id="start-start-container"><a href="#start-start-container" class="headerlink" title="start : start container"></a>start : start container</h3><p>啟動已停止的Container</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker start &lt;ExistContainerId or Name&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="stop-stop-container"><a href="#stop-stop-container" class="headerlink" title="stop : stop container"></a>stop : stop container</h3><p>停止正在執行的Container</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker stop &lt;containerId or Name&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>停止所有Container</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker stop $(docker ps -aq)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h3><p>進入執行中的Container</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -d, --detach               Detached mode: run <span class="built_in">command</span> <span class="keyword">in</span> the background</span><br><span class="line">      --detach-keys string   Override the key sequence <span class="keyword">for</span> detaching a container</span><br><span class="line">  -e, --env list             Set environment variables</span><br><span class="line">  -i, --interactive          Keep STDIN open even <span class="keyword">if</span> not attached</span><br><span class="line">      --privileged           Give extended privileges to the <span class="built_in">command</span></span><br><span class="line">  -t, --tty                  Allocate a pseudo-TTY</span><br><span class="line">  -u, --user string          Username or UID (format: &lt;name|uid&gt;[:&lt;group|gid&gt;])</span><br><span class="line">  -w, --workdir string       Working directory inside the container</span><br><span class="line"></span><br><span class="line">$ docker <span class="built_in">exec</span> -it &lt;containerId or Name&gt; bash</span><br></pre></td></tr></table></figure>
+<h3 id="logs"><a href="#logs" class="headerlink" title="logs"></a>logs</h3><p>查看執行中Container的stdout</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs centos1</span><br><span class="line">...略</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=650 ttl=37 time=77.5 ms</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=651 ttl=37 time=88.5 ms</span><br><span class="line">64 bytes from 8.8.8.8: icmp_seq=652 ttl=37 time=45.8 ms</span><br></pre></td></tr></table></figure>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>上面是Docker的基本知識，後面接著來講Volume。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/alan.github.io/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/alan.github.io/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/22/mysql-basic/" rel="next" title="Mysql config & basic syntax">
+                <i class="fa fa-chevron-left"></i> Mysql config & basic syntax
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/22/docker-volume/" rel="prev" title="Docker Volume">
+                Docker Volume <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Chen</p>
+              <p class="site-description motion-element" itemprop="description">about my learn computer science note and life note</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/alan.github.io/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/alan.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/alan.github.io/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Docker"><span class="nav-number">1.</span> <span class="nav-text">Install Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command"><span class="nav-number">2.</span> <span class="nav-text">Command</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#login"><span class="nav-number">2.1.</span> <span class="nav-text">login</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logout"><span class="nav-number">2.2.</span> <span class="nav-text">logout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-Search-Image"><span class="nav-number">2.3.</span> <span class="nav-text">search : Search Image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pull-Download-Image"><span class="nav-number">2.4.</span> <span class="nav-text">pull : Download Image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image"><span class="nav-number">2.5.</span> <span class="nav-text">image</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#list-Images"><span class="nav-number">2.5.1.</span> <span class="nav-text">list Images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-image"><span class="nav-number">2.5.2.</span> <span class="nav-text">remove image</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ps-Exist-Container"><span class="nav-number">2.6.</span> <span class="nav-text">ps : Exist Container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm-Remove-Container"><span class="nav-number">2.7.</span> <span class="nav-text">rm : Remove Container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#run-create-container-and-run-container"><span class="nav-number">2.8.</span> <span class="nav-text">run : create container and run container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#start-start-container"><span class="nav-number">2.9.</span> <span class="nav-text">start : start container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stop-stop-container"><span class="nav-number">2.10.</span> <span class="nav-text">stop : stop container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec"><span class="nav-number">2.11.</span> <span class="nav-text">exec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logs"><span class="nav-number">2.12.</span> <span class="nav-text">logs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">3.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/alan.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/alan.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/alan.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

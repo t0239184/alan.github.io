@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/alan.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/alan.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/alan.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/alan.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/alan.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/alan.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/alan.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Arch Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="這篇是之前想學Linux的時候所寫的筆記，想說裝一個乾淨什麼都沒有，得靠我自己的手一步步裝好的系統，當然這是折騰人的開始，但也因為有這樣裝過，才開始比較了解Linux，但還是有很多東西需要深入就是了，話說，Linux其實蠻好玩的，Arch也挺符合我這種充滿好奇心的人，可以嚐鮮。">
+<meta name="keywords" content="Arch Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux Note">
+<meta property="og:url" content="/2019/04/23/arch-linux-note/index.html">
+<meta property="og:site_name" content="AlansNote">
+<meta property="og:description" content="這篇是之前想學Linux的時候所寫的筆記，想說裝一個乾淨什麼都沒有，得靠我自己的手一步步裝好的系統，當然這是折騰人的開始，但也因為有這樣裝過，才開始比較了解Linux，但還是有很多東西需要深入就是了，話說，Linux其實蠻好玩的，Arch也挺符合我這種充滿好奇心的人，可以嚐鮮。">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-04-27T08:23:03.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Arch Linux Note">
+<meta name="twitter:description" content="這篇是之前想學Linux的時候所寫的筆記，想說裝一個乾淨什麼都沒有，得靠我自己的手一步步裝好的系統，當然這是折騰人的開始，但也因為有這樣裝過，才開始比較了解Linux，但還是有很多東西需要深入就是了，話說，Linux其實蠻好玩的，Arch也挺符合我這種充滿好奇心的人，可以嚐鮮。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/alan.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2019/04/23/arch-linux-note/">
+
+
+
+
+
+  <title>Arch Linux Note | AlansNote</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/alan.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AlansNote</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/alan.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/alan.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/alan.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/alan.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/alan.github.io/2019/04/23/arch-linux-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/alan.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AlansNote">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Arch Linux Note</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-23T15:11:37+08:00">
+                2019-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/alan.github.io/categories/Unix-like/" itemprop="url" rel="index">
+                    <span itemprop="name">Unix like</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>這篇是之前想學Linux的時候所寫的筆記，想說裝一個乾淨什麼都沒有，得靠我自己的手一步步裝好的系統，當然這是折騰人的開始，但也因為有這樣裝過，才開始比較了解Linux，但還是有很多東西需要深入就是了，話說，Linux其實蠻好玩的，Arch也挺符合我這種充滿好奇心的人，可以嚐鮮。</p>
+<a id="more"></a>
+<h2 id="Create-Image-for-USB"><a href="#Create-Image-for-USB" class="headerlink" title="Create Image for USB"></a>Create Image for USB</h2><h3 id="for-Mac"><a href="#for-Mac" class="headerlink" title="[for Mac]"></a>[for Mac]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ diskUtil list                    //列出所有的磁碟</span><br><span class="line">$ diskUtil unmountDisk [usbDisk]   //卸載磁碟</span><br></pre></td></tr></table></figure>
+<h3 id="Live-USB"><a href="#Live-USB" class="headerlink" title="[Live USB]"></a>[Live USB]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dd bs=4m <span class="keyword">if</span>=[isoFile] <span class="keyword">for</span>=[usbDisk]</span><br></pre></td></tr></table></figure>
+<h2 id="Install-Arch-from-USB"><a href="#Install-Arch-from-USB" class="headerlink" title="Install Arch from USB"></a>Install Arch from USB</h2><h3 id="for-ASUS"><a href="#for-ASUS" class="headerlink" title="[for ASUS]"></a>[for ASUS]</h3><p>Reboot &gt; F2 &gt; EFI &gt; Boot &gt; first USB &gt; Save and Exit</p>
+<h3 id="Arch-Grub-Welcome-page"><a href="#Arch-Grub-Welcome-page" class="headerlink" title="[Arch Grub Welcome page]"></a>[Arch Grub Welcome page]</h3><p>hit ‘e’ on ‘Arch install’ add ‘pci=nomsi’ and ‘modprobe.blacklist=nouveau’</p>
+<h3 id="Check-boot-mode"><a href="#Check-boot-mode" class="headerlink" title="[Check boot mode]"></a>[Check boot mode]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">efivar -l         //如果為錯誤訊息則為BIOS啟動非EFI</span><br></pre></td></tr></table></figure>
+<h2 id="Format-Disk"><a href="#Format-Disk" class="headerlink" title="Format Disk"></a>Format Disk</h2><h3 id="硬碟分割"><a href="#硬碟分割" class="headerlink" title="[硬碟分割]"></a>[硬碟分割]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk           //檢查目前硬碟分割情況</span><br><span class="line">$ cgdisk /dev/sda //GPT分割表用cgdisk分割</span><br><span class="line">    </span><br><span class="line">BOOT:200M   -&gt; sda2 ef00</span><br><span class="line">SWAP:24G    -&gt; sda3 8200 Linux swap</span><br><span class="line">ROOT:50G    -&gt; sda4 8304 Linux x86-64 root</span><br><span class="line">OPT :15G    -&gt; sda5 8300 Linux file system</span><br><span class="line">TMP :1G     -&gt; sda6 8300 Linux file system</span><br><span class="line">USR :50G    -&gt; sda7 8300 Linux file system</span><br><span class="line">VAR :15G    -&gt; sda8 8300 Linux file system</span><br><span class="line">HOME:512G   -&gt; sda9 8302 Linux /home</span><br><span class="line">    </span><br><span class="line">USR : Unix-Software-Resouse</span><br><span class="line">TMP : Template</span><br><span class="line">VAR : Varible</span><br><span class="line"></span><br><span class="line">$ lsblk           //檢查目前硬碟分割情況</span><br></pre></td></tr></table></figure>
+<h3 id="初始化分割區"><a href="#初始化分割區" class="headerlink" title="[初始化分割區]"></a>[初始化分割區]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ mkfs.vfat -F32 /dev/sda2  //EFI</span><br><span class="line">$ mkswap /dev/sda3          //SWAP</span><br><span class="line"></span><br><span class="line">$ mkfs.ext4 /dev/sda4</span><br><span class="line">$ mkfs.ext4 /dev/sda5</span><br><span class="line">$ mkfs.ext4 /dev/sda6</span><br><span class="line">$ mkfs.ext4 /dev/sda7</span><br><span class="line">$ mkfs.ext4 /dev/sda8</span><br><span class="line">$ mkfs.ext4 /dev/sda9</span><br></pre></td></tr></table></figure>
+<h3 id="掛載分割區"><a href="#掛載分割區" class="headerlink" title="[掛載分割區]"></a>[掛載分割區]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /mnt/home /mnt/boot/ /mnt/boot/efi</span><br><span class="line">$ mount /dev/sda4 /mnt                                //掛載ROOT至/mnt</span><br><span class="line">$ mount /dev/sda9 /mnt/home                           //掛載HOME至/mnt/home</span><br><span class="line">$ mount /dev/sda2 /mnt/boot/efi                       //(EFI)掛載BOOT至/mnt/boot/efi</span><br><span class="line">$ mount /dev/sda2 /mnt/boot                           //(BIOS)掛載BOOT至/mnt/boot/</span><br><span class="line">$ swapon /dev/sda3                                    //啟用SWAP</span><br></pre></td></tr></table></figure>
+<h2 id="NetWork"><a href="#NetWork" class="headerlink" title="NetWork"></a>NetWork</h2><h3 id="Wireless"><a href="#Wireless" class="headerlink" title="[Wireless]"></a>[Wireless]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wifi-menu</span><br></pre></td></tr></table></figure>
+<h3 id="Wireless2"><a href="#Wireless2" class="headerlink" title="[Wireless2]"></a>[Wireless2]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ip link                                             //顯示網路介面</span><br><span class="line">$ ip link <span class="built_in">set</span> [interface] up                          //啟用介面</span><br><span class="line">$ iw [interface] link                                 //確認無線裝置連線狀態</span><br><span class="line">$ iw [interface] scan | grep SSID                     //掃描WIFI訊號，只顯示SSID</span><br><span class="line">$ wpa_passphrase [WIFI-SSID] &gt;&gt; /tmp/wifi.conf        //連線到WPA/WPA2加密的無線網路，會等待使用者輸入密碼</span><br><span class="line">$ cat /tmp/wifi.conf                                  //印出上面產生的檔案內容</span><br><span class="line">$ wpa_supplicant -B -i [interface] -c /tmp/wifi.conf  //連線</span><br><span class="line">$ iw [interface] link                                 //確認無線裝置連線狀態</span><br><span class="line">$ dhclient wlan0                                      //要求DHCP伺服器配發動態IP</span><br><span class="line">$ ping -c 3 8.8.8.8                                   //測試連線</span><br></pre></td></tr></table></figure>
+<h3 id="Ethnet"><a href="#Ethnet" class="headerlink" title="[Ethnet]"></a>[Ethnet]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ip link <span class="built_in">set</span> [interface] up                          //啟用介面</span><br><span class="line">$ dhcpcd [interface]                                  //要求DHCP伺服器配發動態IP</span><br></pre></td></tr></table></figure>
+<h3 id="USB-Network"><a href="#USB-Network" class="headerlink" title="[USB-Network]"></a>[USB-Network]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ip link <span class="built_in">set</span> [interface] up</span><br><span class="line">$ dhcpcd [interface]</span><br></pre></td></tr></table></figure>
+<h2 id="Pacman-Config"><a href="#Pacman-Config" class="headerlink" title="Pacman Config"></a>Pacman Config</h2><h3 id="Pacman-Mirrorlist-config-setting"><a href="#Pacman-Mirrorlist-config-setting" class="headerlink" title="[Pacman Mirrorlist config setting]"></a>[Pacman Mirrorlist config setting]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /etc/pacman.d/</span><br><span class="line">$ cp mirrorlist mirrorlist.backup                     //備份鏡像清單</span><br><span class="line">$ rankmirrors -n 6 mirrorlist.backup &gt; mirrorlist    //讓系統測試鏡像速度，按速度排序鏡像，此步驟需要一些時間</span><br></pre></td></tr></table></figure>
+<h3 id="Pacman-config-setting"><a href="#Pacman-config-setting" class="headerlink" title="[Pacman config setting]"></a>[Pacman config setting]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cp /etc/pacman.conf /etc/pacman.conf.backup        //備份設定檔</span><br><span class="line">$ sed -id <span class="string">'s/#Color/Color/g'</span> /etc/pacman.conf        //開啟色彩</span><br><span class="line">$ <span class="built_in">echo</span> -e <span class="string">"[archlinuxfr]\nSigLevel = Never\nServer = http://repo.archlinux.fr/<span class="variable">$arch</span>"</span> &gt;&gt; /etc/pacman.conf  ////Pacman新增Reporsitory</span><br></pre></td></tr></table></figure>
+<h2 id="Download-and-Install-base-system"><a href="#Download-and-Install-base-system" class="headerlink" title="Download and Install base system"></a>Download and Install base system</h2><h3 id="Update-pacman-repostory"><a href="#Update-pacman-repostory" class="headerlink" title="[Update pacman repostory]"></a>[Update pacman repostory]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -Syy</span><br></pre></td></tr></table></figure>
+<h3 id="Install-packages"><a href="#Install-packages" class="headerlink" title="[Install packages]"></a>[Install packages]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ pacstrap /mnt base base-devel</span><br><span class="line">$ pacstrap /mnt intel-ucode</span><br><span class="line">$ pacstrap /mnt zsh gvim rsync htop wget git openssh networkmanager dialog iw dhclient wpa_supplicant</span><br><span class="line">$ pacstrap /mnt pythod yaourt noto-fonts noto-fonts-cjk</span><br></pre></td></tr></table></figure>
+<h3 id="System-config-setting"><a href="#System-config-setting" class="headerlink" title="[System config setting]"></a>[System config setting]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ genfstab -U /mnt | sed -e <span class="string">'s/relatime/noatime/g'</span> &gt;&gt; /mnt/etc/fstab   //開機時的設定檔，開機時會依這個檔案的內容掛載檔案系統。</span><br><span class="line">$ blkid                                                                //顯示各磁碟資訊</span><br><span class="line">$ vim /mnt/etc/fstab                                                   //確認UUID是否正確（和 blkid 比對）</span><br><span class="line">```sh</span><br><span class="line"></span><br><span class="line"><span class="comment">### [Into System]</span></span><br><span class="line">```sh</span><br><span class="line">$ arch-chroot /mnt /bin/bash</span><br></pre></td></tr></table></figure>
+<h3 id="Language"><a href="#Language" class="headerlink" title="[Language]"></a>[Language]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sed -i -e <span class="string">'s/^#\(en_US\|zh_TW\)\(\.UTF-8\)/\1\2/g'</span> /etc/locale.gen     //en_US.UTF-8 和 zh_TW.UTF-8 的註解拿掉</span><br><span class="line">$ locale-gen</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"LANG=en_US.UTF-8"</span> &gt; /etc/locale.conf</span><br></pre></td></tr></table></figure>
+<h3 id="Date-and-Time"><a href="#Date-and-Time" class="headerlink" title="[Date and Time]"></a>[Date and Time]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> TIMEZONE=Asia/Taipei</span><br><span class="line">$ ln -sf /usr/share/zoneinfo/<span class="variable">$&#123;TIMEZONE&#125;</span> /etc/localtime</span><br><span class="line">$ hwclock --systohc</span><br><span class="line">$ systemctl <span class="built_in">enable</span> systemd-timesyncd</span><br></pre></td></tr></table></figure>
+<h3 id="Computer-name"><a href="#Computer-name" class="headerlink" title="[Computer name]"></a>[Computer name]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> HOSTNAME=&lt;hostname&gt;</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$HOSTNAME</span> &gt; /etc/hostname</span><br><span class="line">$ sed -ie <span class="string">"8i 127.0.1.1\t<span class="variable">$HOSTNAME</span>.localdomain\t<span class="variable">$HOSTNAME</span>"</span> /etc/hosts</span><br></pre></td></tr></table></figure>
+<h3 id="Auto-Service-controller-（systemctl）"><a href="#Auto-Service-controller-（systemctl）" class="headerlink" title="[Auto Service controller]（systemctl）"></a>[Auto Service controller]（systemctl）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> fstrim.timer                                         //有SSD才需要，啟用每週執行 fstrim</span><br><span class="line">$ systemctl <span class="built_in">enable</span> dhcpcd                                               //啟動dhcp網路</span><br><span class="line">$ systemctl <span class="built_in">enable</span> NetworkManager</span><br><span class="line">$ systemctl start NetworkManager</span><br></pre></td></tr></table></figure>
+<h3 id="建立開機映像"><a href="#建立開機映像" class="headerlink" title="[建立開機映像]"></a>[建立開機映像]</h3><p>Creates an initial ramdisk environment for booting the linux kernel</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/mkinitcpio.conf                                              //(optional) 看有沒有要修改</span><br><span class="line">$ mkinitcpio -p linux</span><br></pre></td></tr></table></figure>
+<p>以下有常用的開機模式為GRUB和rEFind</p>
+<h3 id="GRUB"><a href="#GRUB" class="headerlink" title="[GRUB]"></a>[GRUB]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -S grub os-prober efibootmgr</span><br><span class="line">$ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch --recheck</span><br><span class="line">$ grub-mkconfig -o /boot/grub/grub.cfg                                  //建立grub開機設定檔</span><br></pre></td></tr></table></figure>
+<h3 id="rEFind"><a href="#rEFind" class="headerlink" title="[rEFind]"></a>[rEFind]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -S refind-efi</span><br><span class="line">$ refind-install</span><br><span class="line">$ blkid | grep ROOT                                                       //將UUID記錄下來</span><br><span class="line">$ vim /boot/refind_linux.conf                                             //設定配置文件/boot/refind_linux.conf内核参数</span><br><span class="line">refind_linux.conf</span><br><span class="line"></span><br><span class="line"><span class="string">"Boot with standard options"</span>  <span class="string">"root=UUID=&lt;your uuid of root partition&gt; rw quiet acpi_rev_override=1 initrd=/boot/initramfs-linux.img initrd=/boot/intel-ucode.img enable_psr=1 disable_power_well=0 nvme_core.default_ps_max_latency_us=130000"</span></span><br><span class="line"><span class="string">"Boot to single-user mode"</span>    <span class="string">"root=UUID=&lt;your uuid of root partition&gt; rw quiet acpi_rev_override=1 single"</span></span><br><span class="line"><span class="string">"Boot with minimal options"</span>   <span class="string">"ro root=/dev/&lt;your root partition name&gt;"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Create-User"><a href="#Create-User" class="headerlink" title="[Create User]"></a>[Create User]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sed -ie <span class="string">'s/# \(%wheel ALL=(ALL) ALL\)/\1/'</span> /etc/sudoers</span><br><span class="line">$ <span class="built_in">export</span> USERNAME=&lt;username&gt;</span><br><span class="line">$ useradd -mG wheel,storage,power,video,audio <span class="variable">$USERNAME</span> //加上 -m 參數才會建立使用者家目錄以及 .bash 相關檔案</span><br><span class="line">$ passwd <span class="variable">$USERNAME</span> <span class="comment"># 設定密碼</span></span><br><span class="line">$ <span class="built_in">exit</span></span><br><span class="line">$ umount -R /mnt</span><br><span class="line">$ reboot</span><br></pre></td></tr></table></figure>
+<p>雙系統直接進windows的話，請在windows下使用easyuefi禁用windows boot manager</p>
+<h3 id="GUI-Desktop-Categories"><a href="#GUI-Desktop-Categories" class="headerlink" title="GUI-Desktop Categories"></a>GUI-Desktop Categories</h3><ul>
+<li>Gnome</li>
+<li>KDE</li>
+<li>XFCE</li>
+<li>…</li>
+</ul>
+<h2 id="Install-GUI-Desktop-Gnome"><a href="#Install-GUI-Desktop-Gnome" class="headerlink" title="[Install GUI Desktop-Gnome]"></a>[Install GUI Desktop-Gnome]</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S gnome</span><br></pre></td></tr></table></figure>
+<h4 id="Gnome-extra"><a href="#Gnome-extra" class="headerlink" title="[Gnome-extra]"></a>[Gnome-extra]</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S atomix dconf-editor devhelp gnome-nettool gnome-weather gnome-builder gnome-chess gnome-usage gnome-tweaks gnome-recipes quadrapassel sysprof vinagre</span><br><span class="line">$ sudo pacman -Rsc epiphany gdm gedit gnome-documents gnome-music gnome-screenshot gnome-terminal sushi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ sudo pacman -S xorg-xinit xorg-server xorg-xclock xterm xorg-twm</span><br><span class="line">$ sudo vim /etc/X11/xinit/xinitrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/X11/xinit/xinitrc </span></span><br><span class="line"><span class="comment"># 註解以下內容</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#twm &amp;</span></span><br><span class="line">    <span class="comment">#xclock -geometry 50x50-1+1 &amp;</span></span><br><span class="line">    <span class="comment">#xterm -geometry 80x50+494+51 &amp;</span></span><br><span class="line">    <span class="comment">#xterm -geometry 80x20+494-0 &amp;</span></span><br><span class="line">    <span class="comment">#exec xterm -geometry 80x66+0+0 -name login</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">exec</span> gnome-session                                                      //如果你使用的是gnome桌面，添加上這行</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp /etc/X11/xinit/xinitrc ~/.xinitrc           //可以使用別的身份登入，為用户複製一份單獨的配置文件，開啟個別的桌面系統</span><br><span class="line">$ startx</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Install-Desktop-Manager"><a href="#Install-Desktop-Manager" class="headerlink" title="[Install Desktop Manager]"></a>[Install Desktop Manager]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -S gdm</span><br><span class="line">$ sed -ie <span class="string">'s/#\(WaylandEnable\)/\1/'</span> /etc/gdm/custom.conf</span><br></pre></td></tr></table></figure>
+<h3 id="Automatically-Open"><a href="#Automatically-Open" class="headerlink" title="[Automatically Open]"></a>[Automatically Open]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> gdm                                                  //設定gdm開機自動啟動載入gnome桌面</span><br></pre></td></tr></table></figure>
+<h3 id="Manually-Open"><a href="#Manually-Open" class="headerlink" title="[Manually Open]"></a>[Manually Open]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start gdm                                                   //手動開啟gdm</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="安裝完系統後其餘設定"><a href="#安裝完系統後其餘設定" class="headerlink" title="安裝完系統後其餘設定"></a>安裝完系統後其餘設定</h2><h3 id="Init-Home-folder"><a href="#Init-Home-folder" class="headerlink" title="[Init Home folder]"></a>[Init Home folder]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ LC_ALL=C xdg-user-dirs-update                                        //Force create english name folder</span><br></pre></td></tr></table></figure>
+<h3 id="Oh-My-Zsh"><a href="#Oh-My-Zsh" class="headerlink" title="[Oh My Zsh]"></a>[Oh My Zsh]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Git-Clone-Setting"><a href="#Git-Clone-Setting" class="headerlink" title="[Git Clone Setting]"></a>[Git Clone Setting]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/Documents</span><br><span class="line">$ git <span class="built_in">clone</span> http://github.com/t0239184/archLinuxNote.git</span><br></pre></td></tr></table></figure>
+<h3 id="YAOURT-PackageManager"><a href="#YAOURT-PackageManager" class="headerlink" title="[YAOURT-PackageManager]"></a>[YAOURT-PackageManager]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S --needed base-devel git wget yajl</span><br><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ git <span class="built_in">clone</span> https://aur.archlinux.org/package-query.git</span><br><span class="line">$ <span class="built_in">cd</span> package-query/</span><br><span class="line">$ makepkg -si &amp;&amp; <span class="built_in">cd</span> /tmp/</span><br><span class="line">$ git <span class="built_in">clone</span> https://aur.archlinux.org/yaourt.git</span><br><span class="line">$ <span class="built_in">cd</span> yaourt/</span><br><span class="line">$ makepkg -si</span><br></pre></td></tr></table></figure>
+<h3 id="Terminal"><a href="#Terminal" class="headerlink" title="[Terminal]"></a>[Terminal]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S roxterm</span><br></pre></td></tr></table></figure>
+<h3 id="FileSystem-Support"><a href="#FileSystem-Support" class="headerlink" title="[FileSystem Support]"></a>[FileSystem Support]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -S ntfs-3g dosfstools                                           //Support NTFS and Exfat fileSystem</span><br><span class="line">```    </span><br><span class="line"><span class="comment">### [Change Folder name to Englist]</span></span><br><span class="line">```sh</span><br><span class="line">$ sudo vim .config/user-dirs.dirs</span><br></pre></td></tr></table></figure>
+<h3 id="Gnome-Theme"><a href="#Gnome-Theme" class="headerlink" title="[Gnome-Theme]"></a>[Gnome-Theme]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S x-arc-darker</span><br><span class="line">$ yaourt -S x-arc-shadow</span><br><span class="line">$ yaourt -S papirus-icon-theme</span><br></pre></td></tr></table></figure>
+<h3 id="Gnome-Shell-Theme"><a href="#Gnome-Shell-Theme" class="headerlink" title="[Gnome-Shell-Theme]"></a>[Gnome-Shell-Theme]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S gnome-shell-theme-macos-mojave</span><br></pre></td></tr></table></figure>
+<h3 id="Gnome-extend-from-yaourt"><a href="#Gnome-extend-from-yaourt" class="headerlink" title="[Gnome-extend from yaourt]"></a>[Gnome-extend from yaourt]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S gnome-shell-extension-dash-to-dock</span><br><span class="line">$ yaourt -S gnome-shell-extension-arc-menu-git</span><br><span class="line">$ yaourt -S gnome-shell-extension-cpufreq-git</span><br></pre></td></tr></table></figure>
+<h3 id="Gnome-extend-from-gnome-store"><a href="#Gnome-extend-from-gnome-store" class="headerlink" title="[Gnome-extend from gnome-store]"></a>[Gnome-extend from gnome-store]</h3><ul>
+<li>alternatetab</li>
+<li>custom hot corners</li>
+<li>extend panel menu</li>
+<li>removeable drive menu</li>
+<li>user themes</li>
+<li>workspace indicator</li>
+<li>net speed</li>
+</ul>
+<h3 id="Font"><a href="#Font" class="headerlink" title="[Font]"></a>[Font]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S ttf-droid              //Window Font</span><br><span class="line">$ yaourt -S ttf-ubuntu-font-family  //Terminal Font</span><br></pre></td></tr></table></figure>
+<h3 id="InputMethod"><a href="#InputMethod" class="headerlink" title="[InputMethod]"></a>[InputMethod]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S gcin</span><br><span class="line">$ vim ~/.xinitrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.xinitrc</span></span><br><span class="line"><span class="built_in">export</span> LANG=<span class="string">"zh_TW.UTF-8"</span></span><br><span class="line"><span class="built_in">export</span> LC_CTYPE=<span class="string">"zh_TW.UTF-8"</span></span><br><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=gcin</span><br><span class="line"><span class="built_in">export</span> GTK_IM_MODULE=<span class="string">"gcin"</span></span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=<span class="string">"gcin"</span></span><br><span class="line">gcin &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="InputMethod-1"><a href="#InputMethod-1" class="headerlink" title="[InputMethod]"></a>[InputMethod]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S ibus-rime</span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.xinitrc</span></span><br><span class="line"><span class="built_in">export</span> LANG=<span class="string">"zh_TW.UTF-8"</span></span><br><span class="line"><span class="built_in">export</span> LC_CTYPE=<span class="string">"zh_TW.UTF-8"</span></span><br><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=<span class="string">"ibus"</span></span><br><span class="line"><span class="built_in">export</span> GTK_IM_MODULE=<span class="string">"ibus"</span></span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=<span class="string">"ibus"</span></span><br><span class="line">ibus &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="Space-preview"><a href="#Space-preview" class="headerlink" title="[Space preview]"></a>[Space preview]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S sushi</span><br></pre></td></tr></table></figure>
+<h3 id="Office"><a href="#Office" class="headerlink" title="[Office]"></a>[Office]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S wps-office</span><br></pre></td></tr></table></figure>
+<h3 id="Enable-audio"><a href="#Enable-audio" class="headerlink" title="[Enable audio]"></a>[Enable audio]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S alsa-utils</span><br><span class="line">$ alsamixer</span><br><span class="line">master hit M</span><br></pre></td></tr></table></figure>
+<h3 id="Music-Player"><a href="#Music-Player" class="headerlink" title="[Music-Player]"></a>[Music-Player]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S audacious</span><br></pre></td></tr></table></figure>
+<h3 id="Video-Player"><a href="#Video-Player" class="headerlink" title="[Video-Player]"></a>[Video-Player]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S vlc</span><br></pre></td></tr></table></figure>
+<h3 id="Youtube-Download-tool"><a href="#Youtube-Download-tool" class="headerlink" title="[Youtube Download tool]"></a>[Youtube Download tool]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S youtube-dl</span><br></pre></td></tr></table></figure>
+<h3 id="Terminal-Screen-split"><a href="#Terminal-Screen-split" class="headerlink" title="[Terminal Screen split]"></a>[Terminal Screen split]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S screen</span><br></pre></td></tr></table></figure>
+<h3 id="監控網路流量"><a href="#監控網路流量" class="headerlink" title="[監控網路流量]"></a>[監控網路流量]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S iftop</span><br></pre></td></tr></table></figure>
+<h2 id="Develop-Enviroment"><a href="#Develop-Enviroment" class="headerlink" title="Develop Enviroment"></a>Develop Enviroment</h2><h3 id="Java"><a href="#Java" class="headerlink" title="[Java]"></a>[Java]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S jdk8-openjdk</span><br><span class="line">$ <span class="built_in">cd</span> /bin &amp;&amp; ll | grep java   //Check java folder real path</span><br><span class="line">$ <span class="built_in">echo</span> <span class="built_in">export</span> JAVA_HOME=\<span class="string">"/usr/lib/jvm/default-runtime\" &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="string">$ echo export PATH=\"'<span class="variable">$JAVA_HOME</span>/bin/:<span class="variable">$PATH</span>'\"</span></span><br><span class="line"><span class="string">$ source ~/.zshrc</span></span><br></pre></td></tr></table></figure>
+<h3 id="Change-JDK-Version"><a href="#Change-JDK-Version" class="headerlink" title="[Change JDK Version]"></a>[Change JDK Version]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ archlinux-java status</span><br><span class="line"></span><br><span class="line">Available Java environments:</span><br><span class="line">  java-10-openjdk</span><br><span class="line">  java-8-openjdk (default)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ archlinux-java get</span><br><span class="line">$ archlinux-java <span class="built_in">set</span> &lt;JDK version&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Maven"><a href="#Maven" class="headerlink" title="[Maven]"></a>[Maven]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S maven</span><br><span class="line">$ <span class="built_in">cd</span> /bin &amp;&amp; ll | grep mvn   //Check maven folder real path</span><br><span class="line">$ <span class="built_in">echo</span> <span class="built_in">export</span> MAVEN_HOME=\<span class="string">"/opt/maven\" &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="string">$ echo export PATH=\"'<span class="variable">$MAVEN_HOME</span>/bin/:<span class="variable">$PATH</span>'\"</span></span><br><span class="line"><span class="string">$ source ~/.zshrc</span></span><br></pre></td></tr></table></figure>
+<h3 id="JetBrain"><a href="#JetBrain" class="headerlink" title="[JetBrain]"></a>[JetBrain]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S intellij-idea-ultimate-edition //Java ide</span><br></pre></td></tr></table></figure>
+<h2 id="jRebel-Crack"><a href="#jRebel-Crack" class="headerlink" title="jRebel Crack"></a>jRebel Crack</h2><p><a href="https://github.com/ilanyu/ReverseProxy/releases/tag/v1.4" target="_blank" rel="noopener">https://github.com/ilanyu/ReverseProxy/releases/tag/v1.4</a></p>
+<p>Download:<br>Mac    &gt; ReverseProxy_darwin_amd64<br>Linux  &gt; </p>
+<p>1.執行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ chmod 777 ReverseProxy_darwin_amd64</span><br><span class="line">$ ./ReverseProxy_darwin_amd64</span><br></pre></td></tr></table></figure>
+<p>2.idea setting<br>Open idea Setting &gt; jRebel  choise Licence option</p>
+<p>“<a href="http://127.0.0.1:8080/xin&quot;" target="_blank" rel="noopener">http://127.0.0.1:8080/xin&quot;</a>        //port號後隨意填<br>“<a href="mailto:aaa@aaa.com" target="_blank" rel="noopener">aaa@aaa.com</a>“                      //只要填入合格mail格式即可</p>
+<h3 id="Don’t-close-terminal"><a href="#Don’t-close-terminal" class="headerlink" title="Don’t close terminal"></a>Don’t close terminal</h3><p>3.switch work offline<br>如果之後到期後再執行一次整個流程</p>
+<p><a href="https://www.jianshu.com/p/8ce60dd452f4" target="_blank" rel="noopener">https://www.jianshu.com/p/8ce60dd452f4</a></p>
+<h3 id="DataGrip"><a href="#DataGrip" class="headerlink" title="[DataGrip]"></a>[DataGrip]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S datagrip                    //DataBase ide</span><br></pre></td></tr></table></figure>
+<h3 id="JetBrain-Creck"><a href="#JetBrain-Creck" class="headerlink" title="[JetBrain Creck]"></a>[JetBrain Creck]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
+<h2 id="Graphy-Card"><a href="#Graphy-Card" class="headerlink" title="Graphy Card"></a>Graphy Card</h2><h3 id="Arch-Disable-Nvidia"><a href="#Arch-Disable-Nvidia" class="headerlink" title="[Arch Disable Nvidia]"></a>[Arch Disable Nvidia]</h3><p>bbswitch can help you to disable Nvidia(PowerOff), First need install bbswitch</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S bbswitch dkms bumblebee</span><br><span class="line">$ sudo <span class="built_in">echo</span> <span class="string">"bbswitch"</span> &gt;&gt; /etc/modules-load.d/modules.conf                  //run bbswitch of system load module</span><br><span class="line">$ sudo <span class="built_in">echo</span> <span class="string">"options bbswitch load_state=0"</span> &gt;&gt; /etc/modprobe.d/bbswitch.conf //<span class="built_in">set</span> <span class="built_in">disable</span> nouveau option of system load module</span><br><span class="line">$ sudo <span class="built_in">echo</span> <span class="string">"blacklist nouveau"</span> &gt;&gt; /etc/modprobe.d/nouveau_blacklist.conf    //<span class="built_in">set</span> nouveau to blacklist</span><br><span class="line">$ mkinitcpio -p linux                                                  //rebuild initrd</span><br><span class="line">$ reboot</span><br><span class="line">$ lspci | grep NVIDIA            //<span class="keyword">if</span> Nvidia status show (rev ff), is sucesses!!</span><br></pre></td></tr></table></figure>
+<h2 id="Touchpad-config"><a href="#Touchpad-config" class="headerlink" title="[Touchpad config]"></a>[Touchpad config]</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ xinput list                                      //show all input drive, and search you touchpad</span><br><span class="line">$ xinput list-props [driveId]                       //input your touchpad Id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Device <span class="string">'SynPS/2 Synaptics TouchPad'</span>:</span><br><span class="line">      Device Enabled (139):   1</span><br><span class="line">      Coordinate Transformation Matrix (141): 1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000</span><br><span class="line">      libinput Tapping Enabled (274): 0</span><br><span class="line">      libinput Tapping Enabled Default (275): 0</span><br><span class="line">      libinput Tapping Drag Enabled (276):    1</span><br><span class="line">      ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ xinput <span class="built_in">set</span>-prop 12[driveId] 274[propertiesId] 1[value]</span><br><span class="line">or</span><br><span class="line">$ xinput <span class="built_in">set</span>-prop --<span class="built_in">type</span>=int --format=8 <span class="string">"SynPS/2 Synaptics TouchPad"</span> <span class="string">"libinput Tapping Enabled"</span> 1</span><br></pre></td></tr></table></figure>
+<h3 id="TouchPad-multiple-config"><a href="#TouchPad-multiple-config" class="headerlink" title="[TouchPad multiple config]"></a>[TouchPad multiple config]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S xf86-input-libinput</span><br><span class="line">$ cp /usr/share/X11/xorg.conf.d/40-libinput.conf /etc/X11/xorg.conf.d/30-touchpad.conf  //Setting touchpad, <span class="string">"/usr/share"</span> is default config, <span class="string">"/etc/"</span> is user custom config</span><br><span class="line">$ sudo vim /etc/X11/xorg.conf.d/30-touchpad.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 30-touchpad.conf</span></span><br><span class="line">Section <span class="string">"InputClass"</span></span><br><span class="line">        Identifier <span class="string">"libinput touchpad catchall"</span></span><br><span class="line">        MatchIsTouchpad <span class="string">"on"</span></span><br><span class="line">        MatchDevicePath <span class="string">"/dev/input/event*"</span></span><br><span class="line">        Driver <span class="string">"libinput"</span></span><br><span class="line">        Option <span class="string">"Tapping"</span> <span class="string">"on"</span></span><br><span class="line">        Option <span class="string">"TapButton1"</span> <span class="string">"1"</span></span><br><span class="line">        Option <span class="string">"TapButton2"</span> <span class="string">"3"</span></span><br><span class="line">        Option <span class="string">"TapButton3"</span> <span class="string">"2"</span></span><br><span class="line">        Option <span class="string">"VertEdgeScroll"</span> <span class="string">"on"</span></span><br><span class="line">        Option <span class="string">"VertTwoFingerScroll"</span> <span class="string">"on"</span></span><br><span class="line">        Option <span class="string">"HorizEdgeScroll"</span> <span class="string">"on"</span></span><br><span class="line">        Option <span class="string">"HorizTwoFingerScroll"</span> <span class="string">"on"</span></span><br><span class="line">        Option <span class="string">"NaturalScrolling"</span> <span class="string">"on"</span></span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>參考: <a href="https://itw01.com/MSCQE8K.html" target="_blank" rel="noopener">https://itw01.com/MSCQE8K.html</a></p>
+</blockquote>
+<h3 id="Show-System-temp"><a href="#Show-System-temp" class="headerlink" title="[Show System temp]"></a>[Show System temp]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S psensor</span><br></pre></td></tr></table></figure>
+<h3 id="Quick-lancer"><a href="#Quick-lancer" class="headerlink" title="[Quick lancer]"></a>[Quick lancer]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S albert</span><br></pre></td></tr></table></figure>
+<h3 id="Run-Windows-exe-file"><a href="#Run-Windows-exe-file" class="headerlink" title="[Run Windows exe file]"></a>[Run Windows exe file]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S wine</span><br></pre></td></tr></table></figure>
+<h2 id="System-Setting"><a href="#System-Setting" class="headerlink" title="System Setting"></a>System Setting</h2><h3 id="SATA-enable-AHCI-mode"><a href="#SATA-enable-AHCI-mode" class="headerlink" title="[SATA enable AHCI mode]"></a>[SATA enable AHCI mode]</h3><p>SATA-MODE：IDE(Default) or AHCI<br>now, Linux and Windows supported AHCI<br>Native AHCI mode 提供更好的性能（如热插拔和 NCQ 支持）、模拟的 IDE 模式提供更好的兼容性。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/mkinitcpio.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># mkinitcpio.conf</span></span><br><span class="line">MODULES=<span class="string">"ahci"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ mkinitcpio -p linux                             //rebuild</span><br><span class="line">$ dmesg                                          //<span class="keyword">if</span> find <span class="string">'AHCI'</span> and <span class="string">'NCQ'</span> <span class="keyword">then</span> susscess</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">SCSI subsystem initialized</span><br><span class="line">libata version 3.00 loaded.</span><br><span class="line">ahci 0000:00:1f.2: version 3.0</span><br><span class="line">ahci 0000:00:1f.2: irq 24 <span class="keyword">for</span> MSI/MSI-X</span><br><span class="line">ahci 0000:00:1f.2: AHCI 0001.0300 32 slots 6 ports 6 Gbps 0x10 impl SATA mode</span><br><span class="line">ahci 0000:00:1f.2: flags: 64bit ncq led clo pio slum part ems apst</span><br><span class="line">scsi host0: ahci</span><br><span class="line">scsi host1: ahci</span><br><span class="line">scsi host2: ahci</span><br><span class="line">scsi host3: ahci</span><br><span class="line">scsi host4: ahci</span><br><span class="line">scsi host5: ahci</span><br><span class="line">...</span><br><span class="line">ata5.00: 976773168 sectors, multi 16: LBA48 NCQ (depth 31/32), AA</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="Power-Manager"><a href="#Power-Manager" class="headerlink" title="[Power-Manager]"></a>[Power-Manager]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S tlp tlp-rdw</span><br><span class="line">$ sudo vim /etc/default/tlp       //custom your setting</span><br><span class="line">$ sudo tlp <span class="built_in">stat</span></span><br><span class="line">$ sudo systemctl <span class="built_in">enable</span> tlp.service</span><br></pre></td></tr></table></figure>
+<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="[GitHub]"></a>[GitHub]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"username"</span></span><br><span class="line">$ git config --global user.email <span class="string">"username@example.com"</span></span><br><span class="line">$ sudo pacman -S openssh</span><br><span class="line">$ ssh-keygen -t rsa -b 4096 -C <span class="string">"your_email@example.com"</span>      //General SSH key</span><br><span class="line">$ ssh-agent -s                                           //Check ssh-agent can run</span><br><span class="line">$ ssh-add ~/.ssh/id_rsa                                   //Add SSH key：</span><br><span class="line">1.Copy ~/.ssh/id_rsa.pub Text</span><br><span class="line">2.GitHub &gt; Settings &gt; Personal settings &gt; SSH Keys &gt; Add key &gt; Paste key</span><br></pre></td></tr></table></figure>
+<h3 id="Git-GUI"><a href="#Git-GUI" class="headerlink" title="[Git GUI]"></a>[Git GUI]</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yaourt -S smartgit</span><br><span class="line">$ yaourt -S gitkaraken</span><br></pre></td></tr></table></figure>
+<h3 id="FireFox-plugin"><a href="#FireFox-plugin" class="headerlink" title="[FireFox plugin]"></a>[FireFox plugin]</h3><ul>
+<li>Vimium                     //vim key Mapping</li>
+<li>Tree Style Tab             //vertical tab manager</li>
+<li>Video Download Helper      //video download</li>
+<li>Adblock plus               //anywhere block ad</li>
+</ul>
+<h3 id="Arch-use-bbswitch彻底禁用双显卡笔记本的独立显卡"><a href="#Arch-use-bbswitch彻底禁用双显卡笔记本的独立显卡" class="headerlink" title="[Arch use bbswitch彻底禁用双显卡笔记本的独立显卡]"></a>[Arch use bbswitch彻底禁用双显卡笔记本的独立显卡]</h3><blockquote>
+<p>參考:  <a href="https://xuchen.wang/archives/archbbswitch.html" target="_blank" rel="noopener">https://xuchen.wang/archives/archbbswitch.html</a></p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ modprobe bbswitch</span><br><span class="line">$ rmmod bbswitch  //bbswitch模块卸载</span><br><span class="line">$ cat /proc/acpi/bbswitch //查看其独立显卡运行状态。</span><br><span class="line">$ tee /proc/acpi/bbswitch \&lt;\&lt;\&lt;\ OFF //关闭/开启独立显卡的指令为</span><br><span class="line">$ tee /proc/acpi/bbswitch \&lt;\&lt;\&lt;\ ON  //关闭/开启独立显卡的指令为</span><br></pre></td></tr></table></figure>
+<p>if exec OFF but status is ON, Maybe Nvidia card not close yet</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ dmesg | tail -1</span><br><span class="line"></span><br><span class="line">bbswitch: device 0000:01:00.0 is <span class="keyword">in</span> use by driver <span class="string">'nouveau'</span>, refusing OFF</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rmmod nouveau                                         //驱动nouveau模块卸载</span><br></pre></td></tr></table></figure>
+<p>First，bbswitch has two parameter，load_state and unload_state</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ modprobe bbswitch load_state=0                         //加载时使用</span><br><span class="line">$ <span class="built_in">echo</span> 1 | tee /sys/module/bbswitch/parameters/unload_state //卸载时使用</span><br><span class="line">$ modprobe bbswitch load_state=0 unload_state=1</span><br><span class="line">$ sudo touch /etc/modprobe.d/bbswitch.conf &amp;&amp; sudo vim /etc/modprobe.d/bbswitch.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/init/bbswitch.conf</span></span><br><span class="line">description <span class="string">"Save power by disabling nvidia on Optimus"</span></span><br><span class="line">author <span class="string">"Lekensteyn &lt;lekensteyn@gmail.com&gt;"</span></span><br><span class="line">start on runlevel [2345]</span><br><span class="line">stop on runlevel [016]</span><br><span class="line">pre-start <span class="built_in">exec</span> /sbin/modprobe bbswitch load_state=0 unload_state=1</span><br><span class="line">pre-stop <span class="built_in">exec</span> /sbin/rmmod bbswitch</span><br></pre></td></tr></table></figure>
+<p>Arch Linux use ‘systemd’, so we create new service enable Nvidia at before shotdown</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ sudo touch /etc/systemd/system/poweroff-enable-nvidia.service</span><br><span class="line">$ sudo vim /etc/systemd/system/poweroff-enable-nvidia.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># poweroff-enable-nvidia.service</span></span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Enable NVIDIA card when poweroff</span><br><span class="line">DefaultDependencies=no</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=/bin/sh -c <span class="string">'echo ON &gt; /proc/acpi/bbswitch'</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=shutdown.target</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> --now             //<span class="built_in">enable</span> bbswitch service</span><br><span class="line">$ sudo touch /etc/modules-load.d/bbswitch.conf</span><br><span class="line">$ sudo vim /etc/modules-load.d/bbswitch.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/modules-load.d/bbswitch.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bbswitch at boot</span></span><br><span class="line">bbswitch</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo touch /etc/modprobe.d/blacklist.conf</span><br><span class="line">$ sudo vim /etc/modprobe.d/blacklist.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/modprobe.d/blacklist.conf</span></span><br><span class="line">blacklist nouveau</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="ERROR-MESSAGE"><a href="#ERROR-MESSAGE" class="headerlink" title="ERROR MESSAGE"></a>ERROR MESSAGE</h2><ul>
+<li>裝機案例：ASUS X550V</li>
+</ul>
+<hr>
+<ul>
+<li><strong>錯誤問題：解決lspci timeout error</strong></li>
+<li>錯誤訊息：lspci timeout</li>
+<li><p>解決方法：</p>
+<blockquote>
+<p>Disable Nvidia driver : Choosing arch from the ISO boot menu hit ‘e’ and add ‘modprobe.blacklist=nouveau’ to the kernal parameters</p>
+</blockquote>
+</li>
+<li><p>參考相關：</p>
+<blockquote>
+</blockquote>
+<p><a href="http://gccpacman.com/2015/11/07/replace-nvidia-driver-with-nouveau-driver-arch-linux" target="_blank" rel="noopener">http://gccpacman.com/2015/11/07/replace-nvidia-driver-with-nouveau-driver-arch-linux</a><br><a href="https://wiki.archlinux.org/index.php/" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/</a></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>錯誤問題：pcieport / RTL8821AE錯誤</strong></li>
+<li><p>錯誤訊息：error msg loop</p>
+<blockquote>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">00:1c.5 PCI bridge: Intel Corporation Sunrise Point-LP PCI Express Root Port <span class="comment">#6 (rev f1) (prog-if 00 [Normal decode])</span></span><br><span class="line">Flags: bus master, fast devsel, latency 0, IRQ 124</span><br><span class="line">Bus: primary=00, secondary=03, subordinate=03, sec-latency=0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解決方法：Choosing arch from the ISO boot menu hit ‘e’ and add ‘pci=nomsi’ to the kernal parameters</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>錯誤問題：開機時有出現一行錯誤訊息</strong></p>
+</li>
+<li><p>錯誤訊息：Failed to start Load Kernel Modules</p>
+<blockquote>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl status systemd-modules-load.service</span><br><span class="line">...</span><br><span class="line">Failed to find module <span class="string">'option bbswitch load_state=0'</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/alan.github.io/tags/Arch-Linux/" rel="tag"># Arch Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/23/homebrew-loaderror/" rel="next" title="Homebrew Load Error">
+                <i class="fa fa-chevron-left"></i> Homebrew Load Error
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/23/nginx/" rel="prev" title="Nginx">
+                Nginx <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Chen</p>
+              <p class="site-description motion-element" itemprop="description">about my learn computer science note and life note</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/alan.github.io/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/alan.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/alan.github.io/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-Image-for-USB"><span class="nav-number">1.</span> <span class="nav-text">Create Image for USB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-Mac"><span class="nav-number">1.1.</span> <span class="nav-text">[for Mac]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Live-USB"><span class="nav-number">1.2.</span> <span class="nav-text">[Live USB]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Arch-from-USB"><span class="nav-number">2.</span> <span class="nav-text">Install Arch from USB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-ASUS"><span class="nav-number">2.1.</span> <span class="nav-text">[for ASUS]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arch-Grub-Welcome-page"><span class="nav-number">2.2.</span> <span class="nav-text">[Arch Grub Welcome page]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-boot-mode"><span class="nav-number">2.3.</span> <span class="nav-text">[Check boot mode]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Format-Disk"><span class="nav-number">3.</span> <span class="nav-text">Format Disk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬碟分割"><span class="nav-number">3.1.</span> <span class="nav-text">[硬碟分割]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化分割區"><span class="nav-number">3.2.</span> <span class="nav-text">[初始化分割區]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#掛載分割區"><span class="nav-number">3.3.</span> <span class="nav-text">[掛載分割區]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NetWork"><span class="nav-number">4.</span> <span class="nav-text">NetWork</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wireless"><span class="nav-number">4.1.</span> <span class="nav-text">[Wireless]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wireless2"><span class="nav-number">4.2.</span> <span class="nav-text">[Wireless2]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ethnet"><span class="nav-number">4.3.</span> <span class="nav-text">[Ethnet]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB-Network"><span class="nav-number">4.4.</span> <span class="nav-text">[USB-Network]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pacman-Config"><span class="nav-number">5.</span> <span class="nav-text">Pacman Config</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pacman-Mirrorlist-config-setting"><span class="nav-number">5.1.</span> <span class="nav-text">[Pacman Mirrorlist config setting]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pacman-config-setting"><span class="nav-number">5.2.</span> <span class="nav-text">[Pacman config setting]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-and-Install-base-system"><span class="nav-number">6.</span> <span class="nav-text">Download and Install base system</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-pacman-repostory"><span class="nav-number">6.1.</span> <span class="nav-text">[Update pacman repostory]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-packages"><span class="nav-number">6.2.</span> <span class="nav-text">[Install packages]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#System-config-setting"><span class="nav-number">6.3.</span> <span class="nav-text">[System config setting]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Language"><span class="nav-number">6.4.</span> <span class="nav-text">[Language]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-and-Time"><span class="nav-number">6.5.</span> <span class="nav-text">[Date and Time]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Computer-name"><span class="nav-number">6.6.</span> <span class="nav-text">[Computer name]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auto-Service-controller-（systemctl）"><span class="nav-number">6.7.</span> <span class="nav-text">[Auto Service controller]（systemctl）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立開機映像"><span class="nav-number">6.8.</span> <span class="nav-text">[建立開機映像]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GRUB"><span class="nav-number">6.9.</span> <span class="nav-text">[GRUB]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rEFind"><span class="nav-number">6.10.</span> <span class="nav-text">[rEFind]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-User"><span class="nav-number">6.11.</span> <span class="nav-text">[Create User]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI-Desktop-Categories"><span class="nav-number">6.12.</span> <span class="nav-text">GUI-Desktop Categories</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-GUI-Desktop-Gnome"><span class="nav-number">7.</span> <span class="nav-text">[Install GUI Desktop-Gnome]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gnome-extra"><span class="nav-number">7.0.1.</span> <span class="nav-text">[Gnome-extra]</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-Desktop-Manager"><span class="nav-number">7.1.</span> <span class="nav-text">[Install Desktop Manager]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Automatically-Open"><span class="nav-number">7.2.</span> <span class="nav-text">[Automatically Open]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Manually-Open"><span class="nav-number">7.3.</span> <span class="nav-text">[Manually Open]</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝完系統後其餘設定"><span class="nav-number">8.</span> <span class="nav-text">安裝完系統後其餘設定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-Home-folder"><span class="nav-number">8.1.</span> <span class="nav-text">[Init Home folder]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oh-My-Zsh"><span class="nav-number">8.2.</span> <span class="nav-text">[Oh My Zsh]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Clone-Setting"><span class="nav-number">8.3.</span> <span class="nav-text">[Git Clone Setting]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YAOURT-PackageManager"><span class="nav-number">8.4.</span> <span class="nav-text">[YAOURT-PackageManager]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminal"><span class="nav-number">8.5.</span> <span class="nav-text">[Terminal]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FileSystem-Support"><span class="nav-number">8.6.</span> <span class="nav-text">[FileSystem Support]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gnome-Theme"><span class="nav-number">8.7.</span> <span class="nav-text">[Gnome-Theme]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gnome-Shell-Theme"><span class="nav-number">8.8.</span> <span class="nav-text">[Gnome-Shell-Theme]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gnome-extend-from-yaourt"><span class="nav-number">8.9.</span> <span class="nav-text">[Gnome-extend from yaourt]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gnome-extend-from-gnome-store"><span class="nav-number">8.10.</span> <span class="nav-text">[Gnome-extend from gnome-store]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Font"><span class="nav-number">8.11.</span> <span class="nav-text">[Font]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InputMethod"><span class="nav-number">8.12.</span> <span class="nav-text">[InputMethod]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InputMethod-1"><span class="nav-number">8.13.</span> <span class="nav-text">[InputMethod]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Space-preview"><span class="nav-number">8.14.</span> <span class="nav-text">[Space preview]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Office"><span class="nav-number">8.15.</span> <span class="nav-text">[Office]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-audio"><span class="nav-number">8.16.</span> <span class="nav-text">[Enable audio]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Music-Player"><span class="nav-number">8.17.</span> <span class="nav-text">[Music-Player]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Video-Player"><span class="nav-number">8.18.</span> <span class="nav-text">[Video-Player]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Youtube-Download-tool"><span class="nav-number">8.19.</span> <span class="nav-text">[Youtube Download tool]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminal-Screen-split"><span class="nav-number">8.20.</span> <span class="nav-text">[Terminal Screen split]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#監控網路流量"><span class="nav-number">8.21.</span> <span class="nav-text">[監控網路流量]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Develop-Enviroment"><span class="nav-number">9.</span> <span class="nav-text">Develop Enviroment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java"><span class="nav-number">9.1.</span> <span class="nav-text">[Java]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Change-JDK-Version"><span class="nav-number">9.2.</span> <span class="nav-text">[Change JDK Version]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven"><span class="nav-number">9.3.</span> <span class="nav-text">[Maven]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JetBrain"><span class="nav-number">9.4.</span> <span class="nav-text">[JetBrain]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jRebel-Crack"><span class="nav-number">10.</span> <span class="nav-text">jRebel Crack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Don’t-close-terminal"><span class="nav-number">10.1.</span> <span class="nav-text">Don’t close terminal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataGrip"><span class="nav-number">10.2.</span> <span class="nav-text">[DataGrip]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JetBrain-Creck"><span class="nav-number">10.3.</span> <span class="nav-text">[JetBrain Creck]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphy-Card"><span class="nav-number">11.</span> <span class="nav-text">Graphy Card</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arch-Disable-Nvidia"><span class="nav-number">11.1.</span> <span class="nav-text">[Arch Disable Nvidia]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Touchpad-config"><span class="nav-number">12.</span> <span class="nav-text">[Touchpad config]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TouchPad-multiple-config"><span class="nav-number">12.1.</span> <span class="nav-text">[TouchPad multiple config]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Show-System-temp"><span class="nav-number">12.2.</span> <span class="nav-text">[Show System temp]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-lancer"><span class="nav-number">12.3.</span> <span class="nav-text">[Quick lancer]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-Windows-exe-file"><span class="nav-number">12.4.</span> <span class="nav-text">[Run Windows exe file]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-Setting"><span class="nav-number">13.</span> <span class="nav-text">System Setting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SATA-enable-AHCI-mode"><span class="nav-number">13.1.</span> <span class="nav-text">[SATA enable AHCI mode]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Power-Manager"><span class="nav-number">13.2.</span> <span class="nav-text">[Power-Manager]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">13.3.</span> <span class="nav-text">[GitHub]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-GUI"><span class="nav-number">13.4.</span> <span class="nav-text">[Git GUI]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FireFox-plugin"><span class="nav-number">13.5.</span> <span class="nav-text">[FireFox plugin]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arch-use-bbswitch彻底禁用双显卡笔记本的独立显卡"><span class="nav-number">13.6.</span> <span class="nav-text">[Arch use bbswitch彻底禁用双显卡笔记本的独立显卡]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ERROR-MESSAGE"><span class="nav-number">14.</span> <span class="nav-text">ERROR MESSAGE</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/alan.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/alan.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/alan.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

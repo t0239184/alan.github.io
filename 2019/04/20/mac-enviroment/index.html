@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/alan.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/alan.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/alan.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/alan.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/alan.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/alan.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/alan.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mac,HomeBrew,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="這篇文章主要在Mac的環境建置上，會寫這篇主要是之前剛好有換HDD到SSD，想說乾脆重裝一套乾淨的系統，同時也可以檢視一下有沒有什麼東西可以整合在一起的，還有哪些是不需要的，所以當初就記錄下來了，後來手上剛好有一台臨時的Air可以用，這篇記錄就派上了用場。">
+<meta name="keywords" content="Mac,HomeBrew">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac Enviroment">
+<meta property="og:url" content="/2019/04/20/mac-enviroment/index.html">
+<meta property="og:site_name" content="AlansNote">
+<meta property="og:description" content="這篇文章主要在Mac的環境建置上，會寫這篇主要是之前剛好有換HDD到SSD，想說乾脆重裝一套乾淨的系統，同時也可以檢視一下有沒有什麼東西可以整合在一起的，還有哪些是不需要的，所以當初就記錄下來了，後來手上剛好有一台臨時的Air可以用，這篇記錄就派上了用場。">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-04-27T08:23:03.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac Enviroment">
+<meta name="twitter:description" content="這篇文章主要在Mac的環境建置上，會寫這篇主要是之前剛好有換HDD到SSD，想說乾脆重裝一套乾淨的系統，同時也可以檢視一下有沒有什麼東西可以整合在一起的，還有哪些是不需要的，所以當初就記錄下來了，後來手上剛好有一台臨時的Air可以用，這篇記錄就派上了用場。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/alan.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2019/04/20/mac-enviroment/">
+
+
+
+
+
+  <title>Mac Enviroment | AlansNote</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/alan.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AlansNote</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">note</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/alan.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/alan.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/alan.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/alan.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/alan.github.io/2019/04/20/mac-enviroment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/alan.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AlansNote">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mac Enviroment</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-20T02:01:50+08:00">
+                2019-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/alan.github.io/categories/Unix-Like/" itemprop="url" rel="index">
+                    <span itemprop="name">Unix Like</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>這篇文章主要在Mac的環境建置上，會寫這篇主要是之前剛好有換HDD到SSD，想說乾脆重裝一套乾淨的系統，同時也可以檢視一下有沒有什麼東西可以整合在一起的，還有哪些是不需要的，所以當初就記錄下來了，後來手上剛好有一台臨時的Air可以用，這篇記錄就派上了用場。</p>
+<a id="more"></a>
+<h2 id="Install-HomeBrew"><a href="#Install-HomeBrew" class="headerlink" title="Install HomeBrew"></a>Install HomeBrew</h2><p>Linux上面都會有PackageManager，例如<code>apt-get</code> <code>yum</code> <code>pacman</code><br>任何軟體只要Repository上面有都可以安裝及管理，但Mac剛好缺少了這個東西，所以我們第一個就來裝它，之後軟體都靠它來管理會方便許多</p>
+<p><a href="https://brew.sh/index_zh-tw" target="_blank" rel="noopener">HomeBrew 官網</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Install-Application-Upgrade-plugin"><a href="#Install-Application-Upgrade-plugin" class="headerlink" title="Install Application-Upgrade plugin"></a>Install Application-Upgrade plugin</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew tap buo/cask-upgrade</span><br></pre></td></tr></table></figure>
+<h2 id="Download-Command"><a href="#Download-Command" class="headerlink" title="Download Command"></a>Download Command</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># zsh</span></span><br><span class="line"><span class="comment"># zsh-syntax-highlighting</span></span><br><span class="line"><span class="comment"># zsh-...</span></span><br><span class="line"><span class="comment"># youtube-dl</span></span><br><span class="line"><span class="comment"># ffmpeg - youtube-dl dependency command</span></span><br><span class="line"><span class="comment"># tree</span></span><br><span class="line"><span class="comment"># wget</span></span><br><span class="line"><span class="comment"># mysql</span></span><br><span class="line"><span class="comment"># ntop</span></span><br><span class="line"><span class="comment"># gcc</span></span><br><span class="line"><span class="comment"># g++</span></span><br><span class="line"><span class="comment"># java</span></span><br><span class="line"><span class="comment"># maven</span></span><br><span class="line"><span class="comment"># docker</span></span><br><span class="line"><span class="comment"># tomcat</span></span><br><span class="line"></span><br><span class="line">$ brew install zsh zsh-syntax-highlighting youtube-dl ffmpeg tree wget mysql ntop gcc g++ java maven docker tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="Download-Config-file"><a href="#Download-Config-file" class="headerlink" title="Download Config file"></a>Download Config file</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://github.com/t0239184/macEnviroment.git</span><br><span class="line">$ <span class="built_in">cd</span> macEnviroment</span><br><span class="line">$ cp .zshrc ~/.zshrc</span><br><span class="line">$ cp .vimrc ~/.vimrc</span><br></pre></td></tr></table></figure>
+<h2 id="Macbook-Air-ICC描述檔修正"><a href="#Macbook-Air-ICC描述檔修正" class="headerlink" title="Macbook Air ICC描述檔修正"></a>Macbook Air ICC描述檔修正</h2><p>修正 2012 MacbookAir ICC描述檔使螢幕對比不強烈的問題</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp CustomMacRumors.icc /Library/ColorSync/Profiles/Display/CustomMacRumors.icc</span><br></pre></td></tr></table></figure>
+<p>開啟System Preferences &gt; Displays &gt; Color &gt; Display profile : Color LCD</p>
+<h2 id="Download-Application"><a href="#Download-Application" class="headerlink" title="Download Application"></a>Download Application</h2><h3 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># iterm2-終端機軟體  macvim-GUI-Vim</span></span><br><span class="line"></span><br><span class="line">$ brew cask install iterm2 macvim</span><br></pre></td></tr></table></figure>
+<h3 id="Common-Application"><a href="#Common-Application" class="headerlink" title="Common Application"></a>Common Application</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># smcfancontrol - 風扇管理</span></span><br><span class="line"><span class="comment"># karabiner-elements - 鍵盤映射管理</span></span><br><span class="line"><span class="comment"># spectacle - 視窗管理</span></span><br><span class="line"><span class="comment"># lacona - Super Spotlight</span></span><br><span class="line"><span class="comment"># the-unarchiver - 解壓縮軟體</span></span><br><span class="line"><span class="comment"># appcleaner - APP移除軟體</span></span><br><span class="line"></span><br><span class="line">$ brew cask install smcfancontrol spectacle karabiner-element lacona the-unarchiver appcleaner</span><br></pre></td></tr></table></figure>
+<h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install chrome firefox</span><br></pre></td></tr></table></figure>
+<h3 id="Edit"><a href="#Edit" class="headerlink" title="Edit"></a>Edit</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install macdown</span><br></pre></td></tr></table></figure>
+<h3 id="Quick-look-plugin"><a href="#Quick-look-plugin" class="headerlink" title="Quick look plugin"></a>Quick look plugin</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># qlcolorcode</span></span><br><span class="line"><span class="comment"># qlimagesize</span></span><br><span class="line"><span class="comment"># quicklook-json</span></span><br><span class="line"><span class="comment"># quickloog-pat</span></span><br><span class="line"></span><br><span class="line">$ brew cask install qlcolorcode qlimagesize quicklook-json quickloog-pat</span><br></pre></td></tr></table></figure>
+<h3 id="Office"><a href="#Office" class="headerlink" title="Office"></a>Office</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># libreoffice - OpenSource Office</span></span><br><span class="line"><span class="comment"># pages - iWork Word</span></span><br><span class="line"><span class="comment"># keynote - iWork PowerPoint</span></span><br><span class="line"></span><br><span class="line">$ brew cask install libreoffice pages keynote</span><br></pre></td></tr></table></figure>
+<h3 id="Player"><a href="#Player" class="headerlink" title="Player"></a>Player</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># iina - Movie Player</span></span><br><span class="line"><span class="comment"># vlc - Media Player</span></span><br><span class="line"></span><br><span class="line">$ brew cask install iina vlc</span><br></pre></td></tr></table></figure>
+<h3 id="Image-Edit"><a href="#Image-Edit" class="headerlink" title="Image Edit"></a>Image Edit</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gimp - OpenSource Image Edit</span></span><br><span class="line"><span class="comment"># photo image editor pixelstyle - Very like photoshop app</span></span><br><span class="line"></span><br><span class="line">$ brew cask install gimp</span><br></pre></td></tr></table></figure>
+<h3 id="GitGUI"><a href="#GitGUI" class="headerlink" title="GitGUI"></a>GitGUI</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sourcetree - GitGUI</span></span><br><span class="line"><span class="comment"># gitkraken - OpenSource GitGUI 特色為拖拉Branch</span></span><br><span class="line"></span><br><span class="line">$ brew cask install sourcetree gitkraken</span><br></pre></td></tr></table></figure>
+<h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install android-studio</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/alan.github.io/tags/Mac/" rel="tag"># Mac</a>
+          
+            <a href="/alan.github.io/tags/HomeBrew/" rel="tag"># HomeBrew</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/19/github-and-hexo/" rel="next" title="Github & Hexo">
+                <i class="fa fa-chevron-left"></i> Github & Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/alan.github.io/2019/04/21/springboot-start-option/" rel="prev" title="Springboot Start Option">
+                Springboot Start Option <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Chen</p>
+              <p class="site-description motion-element" itemprop="description">about my learn computer science note and life note</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/alan.github.io/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/alan.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/alan.github.io/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-HomeBrew"><span class="nav-number">1.</span> <span class="nav-text">Install HomeBrew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Application-Upgrade-plugin"><span class="nav-number">2.</span> <span class="nav-text">Install Application-Upgrade plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-Command"><span class="nav-number">3.</span> <span class="nav-text">Download Command</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-Config-file"><span class="nav-number">4.</span> <span class="nav-text">Download Config file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Macbook-Air-ICC描述檔修正"><span class="nav-number">5.</span> <span class="nav-text">Macbook Air ICC描述檔修正</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-Application"><span class="nav-number">6.</span> <span class="nav-text">Download Application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminal"><span class="nav-number">6.1.</span> <span class="nav-text">Terminal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Common-Application"><span class="nav-number">6.2.</span> <span class="nav-text">Common Application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Browser"><span class="nav-number">6.3.</span> <span class="nav-text">Browser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edit"><span class="nav-number">6.4.</span> <span class="nav-text">Edit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-look-plugin"><span class="nav-number">6.5.</span> <span class="nav-text">Quick look plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Office"><span class="nav-number">6.6.</span> <span class="nav-text">Office</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Player"><span class="nav-number">6.7.</span> <span class="nav-text">Player</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-Edit"><span class="nav-number">6.8.</span> <span class="nav-text">Image Edit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitGUI"><span class="nav-number">6.9.</span> <span class="nav-text">GitGUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDE"><span class="nav-number">6.10.</span> <span class="nav-text">IDE</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/alan.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/alan.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/alan.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/alan.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/alan.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
