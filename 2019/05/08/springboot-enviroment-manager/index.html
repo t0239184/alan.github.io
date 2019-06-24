@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="AlansNote">
 <meta property="og:description" content="專案開發時都會有DEV、TEST、UAT、PROD等等環境，那如果每次都要進程式修改Code，這樣不就非常的麻煩也不安全，目前我所知有幾個方式可以方便切換及管理環境設定。  使用單個Application.yml 使用多個Application.yml Java執行時指定Active 使用Pom.xml管理，Maven指定Active 使用tomcat的JNDI進行配置檔案設定">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-05-08T06:38:13.400Z">
+<meta property="og:updated_time" content="2019-05-15T01:15:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Springboot Project Enviroment Manager">
 <meta name="twitter:description" content="專案開發時都會有DEV、TEST、UAT、PROD等等環境，那如果每次都要進程式修改Code，這樣不就非常的麻煩也不安全，目前我所知有幾個方式可以方便切換及管理環境設定。  使用單個Application.yml 使用多個Application.yml Java執行時指定Active 使用Pom.xml管理，Maven指定Active 使用tomcat的JNDI進行配置檔案設定">
@@ -361,6 +361,12 @@
 <blockquote>
 <p>如果spring.profiles.active没有指定的話，就會直接使用application.yml</p>
 </blockquote>
+<ul>
+<li><p>如果application.yml中有設定port為9999，但在application-dev.yml沒有設定，然後使用dev的話port號會繼承application的9999</p>
+</li>
+<li><p>如果application.yml中有設定port為9999，但在application-dev.yml中有設定8888的話，dev會蓋過9999，使用8888</p>
+</li>
+</ul>
 <h4 id="可以透過RESTFulAPI獲得現在環境"><a href="#可以透過RESTFulAPI獲得現在環境" class="headerlink" title="可以透過RESTFulAPI獲得現在環境"></a>可以透過RESTFulAPI獲得現在環境</h4><p>使用@Value的註解去取得application.yml中的資訊</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">TestController</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;spring.profiles.active&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String environment;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/test/env"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testEnv</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> String.format(<span class="string">"This Project Environment is %s"</span>,environment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="3-Java啟動時指定active"><a href="#3-Java啟動時指定active" class="headerlink" title="3. Java啟動時指定active"></a>3. Java啟動時指定active</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar project.jar --spring.profiles.active=<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
